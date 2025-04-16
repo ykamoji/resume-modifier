@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 
 type ContentProps = {
-    paragraphs:[],
+    paragraphs:string[],
 }
 const Content:FC<ContentProps> = props => {
 

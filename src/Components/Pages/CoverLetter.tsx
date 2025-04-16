@@ -1,12 +1,12 @@
 import Container from 'react-bootstrap/Container';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Contact from "../Contact/Contact.tsx";
 import Label from "../Label/Label.tsx";
 import Content from "../Content/Content.tsx";
 import CVEditor from "../CoverLetter/CVEditor.tsx";
-import paragraphs from '../../../public/paragraphs'
+import paragraphs from "../../../public/paragraphs.json"
 
 type ContactType = {
     addr: string;
@@ -18,7 +18,7 @@ const CoverLetter = () => {
 
     const [content, setContent] = useState(paragraphs);
     const [role, setRole] = useState("Software developer")
-    const [contact, setContact] = useState<ContactType>( {
+    const [contact, ] = useState<ContactType>( {
         addr : "119 Brittany Manor Dr, Apt H, Amherst, Massachusetts, United States, 01002",
         mobile : "(413) 406-4727",
         email: "yashkamoji@yahoo.com"

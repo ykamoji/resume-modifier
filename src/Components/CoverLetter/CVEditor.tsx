@@ -8,9 +8,9 @@ import exportPDF from "../../utils.ts";
 type CVProps = {
     role:string;
     onRoleUpdate: (newText: string) => void;
-    content: string;
+    content: string[];
     onContentAdd: () => void;
-    onContentChange: (newText: string) => void;
+    onContentChange: (idx:number, newText: string) => void;
     onContentRemove: (index: number) => void;
 }
 

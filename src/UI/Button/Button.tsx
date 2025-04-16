@@ -3,6 +3,7 @@ import { Button as BsButton } from 'react-bootstrap';
 import './Button.css'
 
 type buttonProp = {
+    variant?:string
     children: React.ReactNode,
     onClick?:(e:MouseEvent) => void,
     type:"button" | "submit" | "reset" | undefined,
