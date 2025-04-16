@@ -1,0 +1,12 @@
+#contact{
+    font-family: Work Sans, sans-serif, Noto Colr Emoji Glyf;
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 300px;
+}
+
+#addr{
+    gap: 10px;
+}
