@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import './App.css'
 import Header from "./Components/Header/Header.tsx";
 import Home from "./Components/Pages/Home.tsx";
@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-        <BrowserRouter>
+        <HashRouter>
             <Header/>
             <Routes>
                 <Route path='*' element={<Home />} />
@@ -20,7 +20,7 @@ function App() {
                 <Route path="/resume" element={<Resume />} />
                 <Route path="/coverLetter" element={<CoverLetter />} />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     </>
   )
 }
