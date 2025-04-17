@@ -17,7 +17,7 @@ type ResumeProps = {
 
 }
 
-const ResumeEditor:FC<ResumeProps> = _ => {
+const ResumeEditor:FC<ResumeProps> = () => {
 
 
     return (

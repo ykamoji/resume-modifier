@@ -3,7 +3,7 @@ import jsPDF from "jspdf";
 
 const exportPDF = async (id:string) => {
 
-    let element = document.getElementById(id)!;
+    const element = document.getElementById(id)!;
     element.classList.remove("shadow-sm");
     document.body.style.backgroundColor = "white";
 

@@ -1,17 +1,17 @@
-import React, { FC, MouseEvent } from "react";
+import {JSX, MouseEvent} from "react";
 import { Button as BsButton } from 'react-bootstrap';
 import './Button.css'
 
 type buttonProp = {
+    children?: React.ReactNode,
     variant?:string
-    children: React.ReactNode,
     onClick?:(e:MouseEvent) => void,
     type:"button" | "submit" | "reset" | undefined,
-    style?:{},
+    style?:object,
     className?:string,
     id?:string
 }
-const Button:FC<buttonProp> = props => <BsButton {...props}>{props.children}</BsButton>;
+const Button: (props:buttonProp) => JSX.Element = props => <BsButton {...props}>{props.children}</BsButton>;
 
 
 export default Button;

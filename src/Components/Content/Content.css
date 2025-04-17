@@ -1,3 +1,6 @@
 #content{
+    font-family: Work Sans, sans-serif, Noto Colr Emoji Glyf;
     text-align: justify;
+    font-size: 13px;
+    cursor: pointer;
 }

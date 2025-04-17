@@ -1,10 +1,10 @@
 // import Container from 'react-bootstrap/Container';
-// import React, { useState } from 'react';
+import { JSX } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ResumeEditor from "../Resume/ResumeEditor.tsx";
 
-const Resume = () => {
+const Resume:() => JSX.Element = () => {
 
     return (
         <>
