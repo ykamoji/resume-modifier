@@ -1,0 +1,20 @@
+#education{
+    font-size: 13px!important;
+    cursor: pointer;
+}
+
+#education .courses{
+    font-size: 13px!important;
+}
+
+@media  print {
+
+    #education{
+        font-size: 11px!important;
+    }
+
+    #education .courses{
+        font-size: 10px!important;
+    }
+
+}

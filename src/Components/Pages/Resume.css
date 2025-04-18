@@ -1,0 +1,27 @@
+#resume {
+    padding: 50px!important;
+}
+
+@page {
+    size: A4;
+    margin: 0
+}
+
+@media print {
+    html, body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background: white!important;
+    }
+
+    #resume {
+        padding: 2px 35px 2px 35px !important ;
+        background: white!important;
+        box-shadow: none!important;
+    }
+
+    .container, .row, .col {
+
+    }
+}
+

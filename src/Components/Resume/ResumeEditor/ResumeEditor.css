@@ -1,0 +1,26 @@
+.resume-box input{
+    font-size: 13px;
+    background-color: whitesmoke;
+}
+
+.resume-box input:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.resume-box textarea{
+    font-size: 13px;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    background-color: whitesmoke;
+    resize: none;
+
+}
+
+.resume-box textarea:focus{
+    outline: none;
+    box-shadow: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}

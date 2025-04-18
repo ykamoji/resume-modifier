@@ -1,0 +1,14 @@
+#skill{
+    font-size: 13px!important;
+    cursor: pointer;
+}
+
+@media print{
+    #skill{
+        font-size: 11px!important;
+    }
+
+}
+
+
+

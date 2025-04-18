@@ -1,0 +1,25 @@
+#experience{
+    font-size: 13px!important;
+    cursor: pointer;
+}
+
+#experience .text-decoration-underline{
+    text-decoration-color: rgba(0, 0, 0, 0.5)!important;
+}
+
+#experience .resp, #experience .achiev{
+    font-size: 13px!important;
+}
+
+@media print{
+    #experience{
+        font-size: 11px!important;
+    }
+
+    #experience .resp, #experience .achiev{
+        font-size: 10px!important;
+    }
+}
+
+
+

@@ -1,0 +1,23 @@
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+    html, body {
+        margin: 0;
+        padding: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background: white!important;
+    }
+
+    #coverLetter {
+        background: white!important;
+        box-shadow: none!important;
+    }
+
+
+    .container, .row, .col {
+    }
+}

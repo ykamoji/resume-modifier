@@ -1,6 +1,6 @@
 import {JSX, useEffect, useRef, useState} from "react";
 import './Label.css'
-import CVEditor from '../CoverLetter/CVEditor'
+import CVEditor from '../CVEditor/CVEditor.tsx'
 
 type LabelProps = {
     name?:string,

@@ -2,11 +2,17 @@ import {FC, useEffect, useState, useRef} from "react";
 import './Content.css'
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
-import CVEditor from "../CoverLetter/CVEditor"
+import CVEditor from "../CVEditor/CVEditor.tsx"
 
 type ContentProps = {
     content:string[],
 }
+
+const avoid_targets = [
+    'add_content',
+    'remove_content'
+]
+
 const Content:FC<ContentProps> = props => {
 
     const [control, setControl] = useState(() =>
@@ -20,9 +26,12 @@ const Content:FC<ContentProps> = props => {
 
     useEffect(() => {
         const handleDocumentClick = (e:MouseEvent) => {
-            if(contentRef.current && !contentRef.current.contains(e.target as Node)) {
-                control.forEach(c => c.editorMode = false)
-                setControl(control)
+
+            if (contentRef.current && !contentRef.current.contains(e.target as Node)
+                && avoid_targets.filter(avoid => e.target.className.includes(avoid)).length === 0) {
+                const updates = control.slice(0)
+                updates.forEach(c => c.editorMode = false)
+                setControl(updates)
             }
         };
 
@@ -31,14 +40,14 @@ const Content:FC<ContentProps> = props => {
         return () => {
             document.removeEventListener('click', handleDocumentClick);
         };
-    }, []);
+    }, [control]);
 
     const commonProps = {
         addBtn:true,
         onContentAdd: (index:number)=> {
             const updated = [
                 ...control.slice(0, index+1),
-                { editorMode: true, content: ''},
+                { editorMode: true, content: 'Add your text...'},
                 ...control.slice(index+1)
             ]
             updated[index].editorMode = false

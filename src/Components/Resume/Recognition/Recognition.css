@@ -1,0 +1,18 @@
+#recognition{
+    font-size: 13px!important;
+    cursor: pointer;
+}
+
+@media print{
+    #recognition{
+        font-size: 11px!important;
+    }
+
+    #recognition .name, #recognition .date{
+        font-size: 10px!important;
+    }
+
+}
+
+
+
