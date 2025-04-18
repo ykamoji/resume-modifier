@@ -3,8 +3,8 @@ import './Label.css'
 import CVEditor from '../CVEditor/CVEditor.tsx'
 
 type LabelProps = {
-    name?:string,
-    role?:string
+    name:string,
+    role:string
 }
 const Label:(props:LabelProps) => JSX.Element = props => {
 
@@ -30,7 +30,7 @@ const Label:(props:LabelProps) => JSX.Element = props => {
     const commonProps = {
         addBtn:false,
         closeBtn:false,
-        onContentChange: (update:object)=> {
+        onContentChange: (update:{ [key: string]: string })=> {
             setRole(update.role)
         }
     }

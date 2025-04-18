@@ -1,7 +1,11 @@
-import {JSX} from "react";
+import {JSX, ReactNode} from "react";
 import './Section.css'
 
-const Section:(props) => JSX.Element = (props) => {
+type SectionProp = {
+    children:ReactNode
+}
+
+const Section:(props:SectionProp) => JSX.Element = (props) => {
 
     return (
         <>

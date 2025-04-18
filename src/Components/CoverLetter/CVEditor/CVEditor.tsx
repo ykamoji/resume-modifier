@@ -4,13 +4,14 @@ import './CVEditor.css'
 import Button from "../../../UI/Button/Button.tsx";
 
 type CVProps = {
-    id:string,
+    id:string | number,
     rows?:number,
-    addBtn:boolean,
-    onContentAdd?: (index?: number) => void;
-    onContentChange: (updates: object) => void;
-    closeBtn:boolean,
-    onContentRemove?: (index?: number) => void
+    addBtn?:boolean,
+    children:string,
+    onContentAdd?: (index: number | string) => void;
+    onContentChange: (updates: { [key: string | number]: string }) => void;
+    closeBtn?:boolean,
+    onContentRemove?: (index: number | string) => void
 }
 const CVEditor:(props:CVProps) => JSX.Element = props => {
 
@@ -30,11 +31,11 @@ const CVEditor:(props:CVProps) => JSX.Element = props => {
                     { props.addBtn || props.closeBtn ?
                     <div>
                         {props.addBtn && <Button variant={"outline-primary"} className={"rounded-0 btn-sm h-25 add_content"} type={"button"}
-                                                 onClick={()=>props.onContentAdd(props.id)}>Add</Button>}
+                                                 onClick={()=>props.onContentAdd!(props.id)}>Add</Button>}
                         {props.closeBtn && <Button variant={"outline-danger"}
                                                    className={"float-end rounded-0 btn-sm ms-2 h-25 p-1 remove_content"}
                                                    type={"button"}
-                                                   onClick={()=>props.onContentRemove(props.id)}
+                                                   onClick={()=>props.onContentRemove!(props.id)}
                         >X</Button>}
                     </div> : <></>
                     }

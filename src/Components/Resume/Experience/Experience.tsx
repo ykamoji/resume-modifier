@@ -48,12 +48,12 @@ const Experience:(props:ExperienceListProps) => JSX.Element = (props) => {
 
     const commonProps = {
         type:"input",
-        onContentChange: (update:object)=> {
+        onContentChange: (update:{ [key: string | number]: string })=> {
             const key = Object.keys(update)[0]
-            const index = key.split('-')[1]
-            const label = key.split('-')[0]
-            const updates = experience.slice(0)
-            updates[index][label] = update[key]
+            const [label, idx] = key.split('-')
+            const index = parseInt(idx);
+            const updates = [...experience]
+            updates[index][label as keyof ExperienceProp] = update[key]
             setExperience(updates)
         }
     }
@@ -68,15 +68,15 @@ const Experience:(props:ExperienceListProps) => JSX.Element = (props) => {
                     <div key={index} className={"edu_section mb-1"} onDoubleClick={()=>editorClick(index)}>
                         <Row className={"justify-content-between"}>
                             {!editorMode && <Col sm={{span:9}} className={"company text-start"}><span className={'fw-bold'}>{company}, {job}</span>, {city}</Col>}
-                            {editorMode  && <ResumeEditor {...commonProps} classAdditional={"col-1"} id={"company-"+index}>{company}</ResumeEditor>}
-                            {editorMode  && <ResumeEditor {...commonProps} classAdditional={"col-1"} id={"job-"+index}>{job}</ResumeEditor>}
-                            {editorMode  && <ResumeEditor {...commonProps} classAdditional={"col-1"} id={"city-"+index}>{city}</ResumeEditor>}
+                            {editorMode  && <ResumeEditor {...commonProps} classAdditional={"col-3"} id={"company-"+index}>{company}</ResumeEditor>}
+                            {editorMode  && <ResumeEditor {...commonProps} classAdditional={"col-3"} id={"job-"+index}>{job}</ResumeEditor>}
+                            {editorMode  && <ResumeEditor {...commonProps} classAdditional={"col-3"} id={"city-"+index}>{city}</ResumeEditor>}
                             {!editorMode && <Col sm={{span:3}} className={"date fw-bold text-end"}>{date}</Col>}
-                            {editorMode  && <ResumeEditor {...commonProps} classAdditional={"col-2"} id={"date-"+index}>{date}</ResumeEditor>}
+                            {editorMode  && <ResumeEditor {...commonProps} classAdditional={"col-3"} id={"date-"+index}>{date}</ResumeEditor>}
                         </Row>
                         <Row>
                             {!editorMode && <Col sm={{span:3}} className={"date text-start text-decoration-underline"}>{project}</Col>}
-                            {editorMode  && <ResumeEditor {...commonProps} classAdditional={"col-2"} id={"project-"+index}>{project}</ResumeEditor>}
+                            {editorMode  && <ResumeEditor {...commonProps} classAdditional={"col-4"} id={"project-"+index}>{project}</ResumeEditor>}
                         </Row>
                         <div className={"resp"}>
                             {/*<span className={"fw-bold"}>Responsibilities</span>*/}

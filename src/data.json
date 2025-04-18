@@ -25,10 +25,7 @@
       "gpa": "4.0/4",
       "city": "MA",
       "date": "Sep 2023 - May 2025",
-      "courses": [
-        "Computer Vision", "Information Retrieval", "Neural Networks"," Intelligent Visual Computing",
-        "Machine Learning","Algorithms for Data Science","Systems for Data Science","Applied Statistics",
-        "Business Analytics","Data Visualization & Exploration"]
+      "courses": "Computer Vision, Information Retrieval, Neural Networks, Intelligent Visual Computing, Machine Learning, Algorithms for Data Science, Systems for Data Science, Applied Statistics, Business Analytics, Data Visualization & Exploration"
     },
     {
       "name": "Manipal Institute of Technology",
@@ -36,8 +33,7 @@
       "gpa": "8.47/10",
       "city": "India",
       "date": "Aug 2013 - May 2017",
-      "courses": [
-      ]
+      "courses": ""
     }
   ],
   "experience": [

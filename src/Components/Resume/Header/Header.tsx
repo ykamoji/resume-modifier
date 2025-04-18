@@ -11,17 +11,15 @@ type HeaderProps = {
     website:string,
 }
 
-const basic = ['mobile', 'email', 'shortAddr']
+const basic = ['mobile', 'email', 'shortAddr'] as const
 
-const links = ['linkedIn', 'website']
+const links = ['linkedIn', 'website'] as const
 
-const contact = [...basic, ...links]
+const contact = [...basic, ...links] as const
 
 const Header:(props:HeaderProps) => JSX.Element = props => {
 
-    const [header, setHeader] = useState(Object.keys(props)
-        .filter(propKey => contact.includes(propKey))
-        .map(k => ({editorMode:false, label:k , value:props[k]})))
+    const [header, setHeader] = useState(contact.map(k => ({editorMode:false, label:k , value:props[k]})))
 
     const contentRef= useRef<HTMLDivElement>(null);
 
@@ -48,7 +46,7 @@ const Header:(props:HeaderProps) => JSX.Element = props => {
 
     const commonProps = {
         type:"input",
-        onContentChange: (update:object)=> {
+        onContentChange: (update:{ [key: string | number]: string })=> {
             const label = Object.keys(update)[0]
             const updates = header.slice(0)
             updates.filter(c => c.label === label).forEach(c =>  c.value = update[label])
@@ -56,7 +54,7 @@ const Header:(props:HeaderProps) => JSX.Element = props => {
         }
     }
 
-    const ordered_props = contact.map(k => header.find(d => d.label === k))
+    const ordered_props = contact.map(k => header.find(d => d.label === k)!)
 
     return(
         <>
@@ -65,7 +63,7 @@ const Header:(props:HeaderProps) => JSX.Element = props => {
                 {ordered_props.map(({editorMode, label, value}, index) =>
                     <div key={index} onDoubleClick={()=>editorClick(label)}>
                         {!editorMode && <div className={"contact pe-2 " + (index < 4 ? "border-end border-dark border-1" : "")}>
-                            {links.includes(label) ?
+                            {links.includes(label as typeof links[number]) ?
                                 <a href={value} target={"_blank"} className={"link-primary link-offset-2"}>
                                 {value.replace("https://","").replace("www.","")}</a> : value}
                         </div>}

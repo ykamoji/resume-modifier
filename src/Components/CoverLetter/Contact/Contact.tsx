@@ -1,28 +1,28 @@
-import {FC, useEffect, useRef, useState} from "react";
+import {JSX, useEffect, useRef, useState} from "react";
 import './Contact.css'
 import CVEditor from '../CVEditor/CVEditor.tsx'
 
 type ContactProps = {
     addr:string,
     mobile:string,
-    email:string
+    email:string,
+    linkedIn?: string,
+    website?: string,
 }
 
-const allowedKeys = ['addr', 'mobile', 'email']
+const allowedKeys = ['addr', 'mobile', 'email'] as const
 
-const Contact:FC<ContactProps> = props => {
+const Contact:(props:ContactProps) => JSX.Element = props =>{
 
     const [contact, setContact] = useState(
-        Object.keys(props)
-            .filter(prop_key => allowedKeys.includes(prop_key))
-            .map(k => ({editorMode:false, label:k , value:props[k]}))
+        allowedKeys.map(k => ({editorMode:false, label:k , value:props[k]}))
     )
 
     const contentRef= useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleDocumentClick = (e:MouseEvent) => {
-            if(contentRef.current && !contentRef.current.contains(e.target as Node)) {
+            if(contentRef.current && e.target && !contentRef.current.contains(e.target as Node)) {
                 contact.forEach((c) => c.editorMode = false)
                 setContact(contact)
             }
@@ -38,11 +38,10 @@ const Contact:FC<ContactProps> = props => {
     const commonProps = {
         addBtn:false,
         closeBtn:false,
-        onContentChange: (update:object)=> {
+        onContentChange: (update: { [key: string]: string })=> {
             const label = Object.keys(update)[0]
-            const updates = contact.slice(0)
-            updates.filter(c => c.label === label).forEach(c =>  c.value = update[label])
-            setContact(updates)
+            const value = update[label] ?? '';
+            setContact(prev => prev.map(c => c.label === label ? { ...c, value } : c));
         }
     }
 

@@ -33,8 +33,9 @@ const Project:(props:ProjectListProps) => JSX.Element = (props) => {
 
     useEffect(() => {
         const handleDocumentClick = (e:MouseEvent) => {
-            if(projectRef.current && !projectRef.current.contains(e.target as Node)
-                && avoid_targets.filter(avoid => e.target.className.includes(avoid)).length === 0) {
+            const target = e.target as HTMLElement;
+            if(projectRef.current && !projectRef.current.contains(target)
+                && avoid_targets.filter(avoid => target.className.includes(avoid)).length === 0) {
                 const updates = project.slice(0)
                 updates.forEach((c) => c.editorMode = false)
                 setProject(updates)
@@ -49,19 +50,19 @@ const Project:(props:ProjectListProps) => JSX.Element = (props) => {
     }, [project]);
 
     const editorClick = (index:number) => {
-        const updates = project.slice(0)
+        const updates = [...project]
         updates[index].editorMode = !updates[index].editorMode
         setProject(updates)
     }
 
     const commonProps = {
         type:"input",
-        onContentChange: (update:object)=> {
+        onContentChange: (update:{ [key: string | number]: string })=> {
             const key = Object.keys(update)[0]
-            const index = key.split('-')[1]
-            const label = key.split('-')[0]
-            const updates = project.slice(0)
-            updates[index][label] = update[key]
+            const [label, idx] = key.split('-')
+            const index = parseInt(idx);
+            const updates = [...project]
+            updates[index][label as keyof ProjectProp] = update[key]
             setProject(updates)
         }
     }
@@ -70,8 +71,8 @@ const Project:(props:ProjectListProps) => JSX.Element = (props) => {
         type:"textarea",
         rows:3,
         addBtn:true,
-        onContentAdd: (key:string)=> {
-            const index = parseInt(key.split('-')[1])
+        onContentAdd: (key: string | number)=> {
+            const index = parseInt((key as string).split('-')[1])
             const updated = [
                 ...project.slice(0, index+1),
                 { name: "name", advisors: "advisors", link: "link", code: "code", date: "date", place: "place", description: "description", editorMode: true },
@@ -81,8 +82,8 @@ const Project:(props:ProjectListProps) => JSX.Element = (props) => {
             setProject(updated)
         },
         closeBtn:true,
-        onContentRemove: (key: string) => {
-            const index = parseInt(key.split('-')[1])
+        onContentRemove: (key: number | string) => {
+            const index = parseInt((key as string).split('-')[1])
             setProject(project.filter((_, i) => i !== index));
         },
     }
@@ -99,14 +100,13 @@ const Project:(props:ProjectListProps) => JSX.Element = (props) => {
                                     <a className={'link-dark link-underline-dark link-offset-1'} href={link} target={"_blank"}>
                                         <span className={'fw-bold'}>{name}</span></a>
                                     <span className={'ms-1 fst-italic'}>[{code}]</span>
-                                    {advisors.length > 0 ?
-                                        <span className={'ms-1 text-body-tertiary'}>({"Advisors: " + advisors})</span> : <></>}
+                                    {advisors && <span className={'ms-1 text-body-tertiary'}>({"Advisors: " + advisors})</span> }
                                 </Col>}
                             {editorMode &&
                                 <>
                                     <ResumeEditor {...commonProps} id={"link-"+index} >{link}</ResumeEditor>
                                     <ResumeEditor {...commonProps} id={"name-"+index} >{name}</ResumeEditor>
-                                    <ResumeEditor {...commonProps} id={"advisors-"+index} >{advisors}</ResumeEditor>
+                                    {advisors && <ResumeEditor {...commonProps} id={"advisors-"+index} >{advisors}</ResumeEditor>}
                                     <ResumeEditor {...commonProps} id={"code-"+index} >{code}</ResumeEditor>
                                 </>
                                 }

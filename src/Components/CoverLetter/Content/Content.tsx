@@ -1,4 +1,4 @@
-import {FC, useEffect, useState, useRef} from "react";
+import {useEffect, useState, useRef, JSX} from "react";
 import './Content.css'
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -13,7 +13,7 @@ const avoid_targets = [
     'remove_content'
 ]
 
-const Content:FC<ContentProps> = props => {
+const Content:(props:ContentProps) => JSX.Element = props => {
 
     const [control, setControl] = useState(() =>
         [...Array(props.content.length).keys()].map(k => ({
@@ -27,8 +27,10 @@ const Content:FC<ContentProps> = props => {
     useEffect(() => {
         const handleDocumentClick = (e:MouseEvent) => {
 
-            if (contentRef.current && !contentRef.current.contains(e.target as Node)
-                && avoid_targets.filter(avoid => e.target.className.includes(avoid)).length === 0) {
+            const target = e.target as HTMLElement;
+
+            if (contentRef.current && !contentRef.current.contains(target)
+                && avoid_targets.filter(avoid => target.className.includes(avoid)).length === 0) {
                 const updates = control.slice(0)
                 updates.forEach(c => c.editorMode = false)
                 setControl(updates)
@@ -44,7 +46,8 @@ const Content:FC<ContentProps> = props => {
 
     const commonProps = {
         addBtn:true,
-        onContentAdd: (index:number)=> {
+        onContentAdd: (index: string | number)=> {
+            index = index as number
             const updated = [
                 ...control.slice(0, index+1),
                 { editorMode: true, content: 'Add your text...'},
@@ -53,14 +56,14 @@ const Content:FC<ContentProps> = props => {
             updated[index].editorMode = false
             setControl(updated)
         },
-        onContentChange: (updates:object) => {
-            const updated = control.slice(0);
-            const index = Object.keys(updates)[0]
-            updated[index].content = updates[index]
+        onContentChange: (updates: { [key: string | number]: string }) => {
+            const updated = [...control];
+            const index = Number(Object.keys(updates)[0]);
+            updated[index].content = updates[index];
             setControl(updated)
         },
         closeBtn:true,
-        onContentRemove: (index: number) => {
+        onContentRemove: (index: string | number) => {
             setControl(control.filter((_, i) => i !== index));
         },
         rows:6

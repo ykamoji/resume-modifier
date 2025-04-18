@@ -4,11 +4,11 @@ import ResumeEditor from "../ResumeEditor/ResumeEditor.tsx";
 import './Skill.css'
 
 type SkillsProp = {
-    languages:string[],
-    databases:string[],
-    aws:string[],
-    framework:string[],
-    others:string[],
+    languages:string,
+    databases:string,
+    aws:string,
+    framework:string,
+    others:string,
     certificates:{name:string, link:string }[]
 }
 
@@ -38,7 +38,7 @@ const Skill:(props:SkillsProp) => JSX.Element = (props) => {
 
     const commonProps = {
         type:"input",
-        onContentChange: (update:object)=> {
+        onContentChange: (update: { [key: string | number]: string })=> {
             const key = Object.keys(update)[0]
             setSkill(prevState => ({...prevState, [key]: update[key]}))
         }

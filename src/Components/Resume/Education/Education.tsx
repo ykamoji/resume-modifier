@@ -47,12 +47,12 @@ const Education:(props:EducationListProps) => JSX.Element = (props) => {
 
     const commonProps = {
         type:"input",
-        onContentChange: (update:object)=> {
+        onContentChange: (update:{ [key: string | number]: string })=> {
             const key = Object.keys(update)[0]
-            const index = key.split('-')[1]
-            const label = key.split('-')[0]
-            const updates = education.slice(0)
-            updates[index][label] = update[key]
+            const [label, idx] = key.split('-')
+            const index = parseInt(idx);
+            const updates = [...education]
+            updates[index][label as keyof (EducationProp)] = update[key]
             setEducation(updates)
         }
     }
@@ -75,14 +75,12 @@ const Education:(props:EducationListProps) => JSX.Element = (props) => {
                             {!editorMode && <Col sm={{span:2}} className={"date text-end"}>GPA: {gpa}</Col>}
                             {editorMode  && <ResumeEditor {...commonProps} classAdditional={"col-2"} id={"gpa-"+index}>{"GPA: " + gpa}</ResumeEditor>}
                         </Row>
-                        {!editorMode && courses.length > 0 ?
-                            <div className={"courses"}>
-                                <u>Relevant Coursework</u>&nbsp;&nbsp;{courses.join(', ')}
-                            </div> :<></>}
-                        {editorMode && courses.length > 0 ?
+                        {!editorMode && courses ?
+                            <div className={"courses"}><u>Relevant Coursework</u>&nbsp;&nbsp;{courses}</div> :<></>}
+                        {editorMode && courses ?
                             <>
                             <u>Relevant Coursework</u>&nbsp;&nbsp;
-                                <ResumeEditor {...commonProps} classAdditional={"col-12"} id={"courses-"+index}>{courses.join(', ')}</ResumeEditor></>
+                                <ResumeEditor {...commonProps} classAdditional={"col-12"} id={"courses-"+index}>{courses}</ResumeEditor></>
                             :<></>}
                     </div>
                 )}

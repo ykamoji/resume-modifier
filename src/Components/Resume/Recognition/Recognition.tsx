@@ -39,12 +39,12 @@ const Recognition:(props:RecognitionProp) => JSX.Element = (props) => {
 
     const commonProps = {
         type:"input",
-        onContentChange: (update:object)=> {
+        onContentChange: (update:{ [key: string | number]: string })=> {
             const key = Object.keys(update)[0]
-            const index = key.split('-')[1]
-            const label = key.split('-')[0]
-            const updates = recognition.slice(0)
-            updates[index][label] = update[key]
+            const [label, idx] = key.split('-')
+            const index = parseInt(idx);
+            const updates = [...recognition]
+            updates[index][label as keyof ({name:string, date:string})] = update[key]
             setRecognition(updates)
         }
     }
@@ -63,8 +63,8 @@ const Recognition:(props:RecognitionProp) => JSX.Element = (props) => {
                         }
                         {editorMode &&
                             <>
-                                <ResumeEditor {...commonProps} classAdditional={'col-3'} id={"name"} className={"text-start"}>{name}</ResumeEditor>
-                                <ResumeEditor {...commonProps} classAdditional={'col-1'} id={"date"} className={"text-end fw-bold"}>{date}</ResumeEditor>
+                                <ResumeEditor {...commonProps} classAdditional={'col-6'} id={"name-"+index}>{name}</ResumeEditor>
+                                <ResumeEditor {...commonProps} classAdditional={'col-1'} id={"date"+index}>{date}</ResumeEditor>
                             </>
                         }
                     </div>

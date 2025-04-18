@@ -8,7 +8,8 @@ type buttonProp = {
     type:"button" | "submit" | "reset" | undefined,
     style?:object,
     className?:string,
-    id?:string
+    id?:string,
+    onClick?: () => void,
 }
 const Button: (props:buttonProp) => JSX.Element = props => <BsButton {...props}>{props.children}</BsButton>;
 
