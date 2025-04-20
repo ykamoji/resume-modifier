@@ -68,9 +68,12 @@ const Section:(props:SectionProps) => JSX.Element = ({section, data, editMode, o
         onContentAdd: (key: string | number)=> {
             const index = parseInt((key as string).split('-')[1])
             const projects = sectionContent as ProjectProp[]
+            const original = projects[index];
+            const duplicate: ProjectProp = { ...original };
+            (Object.keys(duplicate) as (keyof ProjectProp)[]).forEach(k => duplicate[k] = k);
             const updated = [
                 ...projects.slice(0, index+1),
-                { name: "name", advisors: "advisors", link: "link", code: "code", date: "date", place: "place", description: "description"},
+                duplicate,
                 ...projects.slice(index+1)
             ]
             setEdits(prev => [
@@ -79,7 +82,7 @@ const Section:(props:SectionProps) => JSX.Element = ({section, data, editMode, o
                 { editorMode: true },
                 ...prev.slice(index+1),
             ]);
-            updateSection!("projects", updated)
+            updateSection!(section, updated)
 
         },
         closeBtn:true,
@@ -91,7 +94,7 @@ const Section:(props:SectionProps) => JSX.Element = ({section, data, editMode, o
                 ...prev.slice(0, index),
                 ...prev.slice(index+1),
             ]);
-            updateSection!("projects", updated)
+            updateSection!(section, updated)
         },
     }
 
