@@ -32,7 +32,7 @@ const CoverLetter = () => {
                     <div id={"hline"} className={"float-end me-5"}></div>
                     <Container id={"header"} className={"mb-5 ps-sm-5 pe-sm-5"}>
                         <Contact {...data.contact} />
-                        <Label {...data.label} />
+                        <Label {...data.contact} />
                     </Container>
                     <Content content={data.content} />
                 </Col>

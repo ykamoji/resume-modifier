@@ -79,7 +79,7 @@ const Section:(props:SectionProps) => JSX.Element = ({section, data, editMode, o
                 { editorMode: true },
                 ...prev.slice(index+1),
             ]);
-            updateSection("projects", updated)
+            updateSection!("projects", updated)
 
         },
         closeBtn:true,
@@ -91,7 +91,7 @@ const Section:(props:SectionProps) => JSX.Element = ({section, data, editMode, o
                 ...prev.slice(0, index),
                 ...prev.slice(index+1),
             ]);
-            updateSection("projects", updated)
+            updateSection!("projects", updated)
         },
     }
 
