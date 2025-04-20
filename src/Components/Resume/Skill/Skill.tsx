@@ -1,16 +1,8 @@
 import {JSX, useEffect, useRef, useState} from "react";
-import Section from "../../../UI/Section/Section.tsx";
+import SectionHeading from "../../../UI/SectionHeading/SectionHeading.tsx";
 import ResumeEditor from "../ResumeEditor/ResumeEditor.tsx";
 import './Skill.css'
-
-type SkillsProp = {
-    languages:string,
-    databases:string,
-    aws:string,
-    framework:string,
-    others:string,
-    certificates:{name:string, link:string }[]
-}
+import {SkillsProp} from "../../../utils.ts";
 
 const Skill:(props:SkillsProp) => JSX.Element = (props) => {
 
@@ -46,7 +38,7 @@ const Skill:(props:SkillsProp) => JSX.Element = (props) => {
 
     return (
         <>
-            <Section>Technical Skills</Section>
+            <SectionHeading>Technical Skills</SectionHeading>
             <div id={"skill"} className={"mt-1"} ref={skillRef} onDoubleClick={() => editorClick()}>
                 {!skill.editorMode && <>
                 <span className={"fw-bold"}>Languages: </span> {skill.languages}<br/>

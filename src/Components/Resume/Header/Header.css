@@ -1,6 +1,9 @@
+#resume_header{
+    cursor: pointer;
+}
+
 #resume_header .contact{
     font-size: 13px;
-    cursor: pointer;
 }
 
 @media print{

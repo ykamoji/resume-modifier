@@ -1,13 +1,11 @@
 import {JSX, useEffect, useRef, useState} from "react";
-import Section from "../../../UI/Section/Section.tsx";
+import SectionHeading from "../../../UI/SectionHeading/SectionHeading.tsx";
 import ResumeEditor from "../ResumeEditor/ResumeEditor.tsx";
 import './Recognition.css'
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import {RecognitionProp} from "../../../utils.ts";
 
-type RecognitionProp = {
-    recognitions:{name:string, date:string}[]
-}
 
 const Recognition:(props:RecognitionProp) => JSX.Element = (props) => {
 
@@ -51,7 +49,7 @@ const Recognition:(props:RecognitionProp) => JSX.Element = (props) => {
 
     return (
         <>
-            <Section>Recognition</Section>
+            <SectionHeading>Recognition</SectionHeading>
             <div id={"recognition"} className={"mt-1"} ref={recognitionRef}>
                 {recognition.map(({name, date, editorMode}, index) =>
                     <div key={index} onDoubleClick={() => editorClick(index)}>

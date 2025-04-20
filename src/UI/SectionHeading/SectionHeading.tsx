@@ -1,11 +1,11 @@
 import {JSX, ReactNode} from "react";
-import './Section.css'
+import './SectionHeading.css'
 
 type SectionProp = {
     children:ReactNode
 }
 
-const Section:(props:SectionProp) => JSX.Element = (props) => {
+const SectionHeading:(props:SectionProp) => JSX.Element = (props) => {
 
     return (
         <>
@@ -16,4 +16,4 @@ const Section:(props:SectionProp) => JSX.Element = (props) => {
     )
 }
 
-export default Section
+export default SectionHeading

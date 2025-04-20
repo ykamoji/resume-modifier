@@ -1,0 +1,12 @@
+#controls input:focus{
+    box-shadow: none;
+}
+
+#controls .btn, #controls .dropdown-menu{
+    border-radius: 0;
+}
+
+#controls .dropdown-item:hover{
+    background-color: #0a53be;
+    color: white;
+}

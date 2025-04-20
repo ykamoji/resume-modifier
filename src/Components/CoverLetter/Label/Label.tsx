@@ -1,12 +1,9 @@
 import {JSX, useEffect, useRef, useState} from "react";
 import './Label.css'
 import CVEditor from '../CVEditor/CVEditor.tsx'
+import {ContactProps} from "../../../utils.ts";
 
-type LabelProps = {
-    name:string,
-    role:string
-}
-const Label:(props:LabelProps) => JSX.Element = props => {
+const Label:(props:ContactProps) => JSX.Element = props => {
 
     const [role, setRole] = useState(props.role)
     const [editorMode, setEditorMode] = useState(false)

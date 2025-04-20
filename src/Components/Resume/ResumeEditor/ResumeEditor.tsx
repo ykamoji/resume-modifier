@@ -30,15 +30,15 @@ const ResumeEditor:(props:ResumeProps) => JSX.Element = props => {
                                 className={"rounded-0 p-0"}
                                 cols={100}
                                 rows={props.rows}
-                                onChange={(e) => props.onContentChange({[props.id]: e.target.value})}
-                                value={props.children ?? ""}/>
+                                onBlur={(e) => props.onContentChange({[props.id]: e.target.value})}
+                                defaultValue={props.children ?? ""}/>
                             :
                             <Form.Control
                                 as="input"
                                 placeholder={""}
                                 className={"rounded-0 p-0"}
-                                onChange={(e) => props.onContentChange({[props.id]: e.target.value})}
-                                value={props.children ?? ""} />
+                                onBlur={(e) => props.onContentChange({[props.id]: e.target.value})}
+                                defaultValue={props.children ?? ""} />
                     }
                     { props.addBtn || props.closeBtn ?
                     <div>

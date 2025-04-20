@@ -1,14 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.css'
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import './App.css'
-import Header from "./Components/CoverLetter/Header/Header.tsx";
-import Home from "./Components/Pages/Home.tsx";
-import Resume from "./Components/Pages/Resume.tsx";
-import CoverLetter from "./Components/Pages/CoverLetter.tsx";
+import Header from "./Components/Header/Header.tsx";
+import { lazy } from "react";
 
+const Home = lazy(() => import("./Components/Pages/Home.tsx"))
+const Resume = lazy(() => import("./Components/Pages/Resume.tsx"))
+const CoverLetter = lazy(() => import("./Components/Pages/CoverLetter.tsx"))
 
 function App() {
-
 
   return (
     <>

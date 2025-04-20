@@ -1,15 +1,13 @@
 {
   "contact": {
+    "name": "Yash Kamoji",
+    "role": "Software developer",
     "addr": "119 Brittany Manor Dr, Apt H, Amherst, Massachusetts, United States, 01002",
     "shortAddr": "Amherst, MA",
     "mobile": "(413) 406-4727",
     "email": "yashkamoji@yahoo.com",
     "linkedIn": "https://www.linkedin.com/in/yash-kamoji-51b23b118",
     "website": "https://ykamoji.github.io/"
-  },
-  "label": {
-    "name": "Yash Kamoji",
-    "role": "Software developer"
   },
   "content": [
     "I am writing to express my keen interest in the Software Developer position at your esteemed company. With a solid background in software development and a profound interest in advancing technological solutions, I am confident in my ability to contribute effectively to your team. Drawing upon my 3 years of experience as a Lead Software Developer at Wipro, I have honed my skills in a range of programming languages and development techniques that I believe align well with the needs of your organization.",
@@ -164,7 +162,7 @@
       }
     ]
   },
-  "recognitions":[
+  "recognitions": [
     {
       "name": "Employee excellence award: Extraordinaire contributions",
       "date": "2021"

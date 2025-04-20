@@ -1,14 +1,7 @@
 import {JSX, useEffect, useRef, useState} from "react";
 import './Contact.css'
 import CVEditor from '../CVEditor/CVEditor.tsx'
-
-type ContactProps = {
-    addr:string,
-    mobile:string,
-    email:string,
-    linkedIn?: string,
-    website?: string,
-}
+import {ContactProps} from "../../../utils.ts";
 
 const allowedKeys = ['addr', 'mobile', 'email'] as const
 

@@ -3,15 +3,7 @@ import './Content.css'
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import CVEditor from "../CVEditor/CVEditor.tsx"
-
-type ContentProps = {
-    content:string[],
-}
-
-const avoid_targets = [
-    'add_content',
-    'remove_content'
-]
+import {avoid_targets, ContentProps} from "../../../utils.ts";
 
 const Content:(props:ContentProps) => JSX.Element = props => {
 

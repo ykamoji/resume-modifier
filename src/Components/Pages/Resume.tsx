@@ -1,19 +1,26 @@
-import {JSX, useRef} from 'react';
+import {JSX, useRef, useState} from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from "../../UI/Button/Button.tsx";
 import { useReactToPrint } from 'react-to-print';
-import Header from "../Resume/Header/Header.tsx";
-import {contact, label, education, experience, projects, skills, recognitions} from "../../data.json"
-import Education from "../Resume/Education/Education";
-import Experience from "../Resume/Experience/Experience.tsx";
+import DEFAULT from "../../data.json"
+import Controls from "../Resume/Controls/Controls.tsx";
+import {ResumeProp, ResumeStateProps} from "../../utils.ts";
+import Template from "../Resume/Template/Template.tsx";
 import './Resume.css'
-import Project from "../Resume/Project/Project.tsx";
-import Skill from "../Resume/Skill/Skill.tsx";
-import Recognition from "../Resume/Recognition/Recognition.tsx";
-
 
 const Resume:() => JSX.Element = () => {
+
+    const [templates, setTemplates] = useState<ResumeStateProps[]>([{
+        name:'Default',
+        selected:true,
+        data:DEFAULT
+    }])
+
+    const onTemplateSelection = (name:string) => {
+        const updates = [...templates]
+        updates.forEach(t=> t.name === name ? t.selected=true : t.selected=false)
+        setTemplates(updates)
+    }
 
     const printRef = useRef<HTMLDivElement>(null);
 
@@ -22,21 +29,37 @@ const Resume:() => JSX.Element = () => {
         documentTitle: "Resume"
     });
 
+    const uploadTemplates = (files:ResumeStateProps[]) => {
+        setTemplates(prevState => [...prevState, ...files])
+    }
+
+    const updateTemplates = (name:string, section:keyof ResumeProp, data: ResumeProp[keyof ResumeProp]) => {
+        setTemplates(prevState =>
+            prevState.map(t => {
+                if (t.name === name) {
+                    return {
+                        ...t,
+                        data: {
+                            ...t.data,
+                            [section]: data
+                        }
+                    };
+                }
+                return t;
+            })
+        );
+    }
+
+    const selectedTemplate = templates.find(t => t.selected)!
+
     return (
         <>
-        <Button variant={"outline-success"} type={"button"}
-                className={"float-end rounded-0 me-5 mt-5"}
-                onClick={handlePrint}>
-            Print
-        </Button>
             <Row className={"justify-content-center mt-4"}>
+                <Col id={"controls"} lg={{span: 3}}>
+                    <Controls templates={templates} print={handlePrint} uploadTemplates={uploadTemplates} onTemplateSelection={onTemplateSelection}/>
+                </Col>
                 <Col ref={printRef} id={"resume"} lg={{span: 7}} className={"shadow-sm bg-white p-2"}>
-                    <Header {...contact} {...label} />
-                    <Education education={education}/>
-                    <Experience experience={experience} />
-                    <Project projects={projects} />
-                    <Skill {...skills} />
-                    <Recognition recognitions={recognitions} />
+                   <Template {...selectedTemplate} updateTemplates={updateTemplates} />
                 </Col>
             </Row>
         </>
