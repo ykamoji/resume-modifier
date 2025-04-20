@@ -103,7 +103,16 @@ export type SkillListProps = {
 
 
 export type RecognitionProp = {
+    edits:{editorMode:boolean}[] ,
+    editorClick: (index:number) => void,
     recognitions:{name:string, date:string}[]
+    recognitionCommon:{type:string, onContentChange: (update:{ [key: string | number]: string })=>void},
+    additionalCommon:{
+        type:string, addBtn:boolean, closeBtn:boolean,
+        onContentAdd: (key: string | number) => void,
+        onContentRemove: (key: string | number) => void,
+        onContentChange: (update:{ [key: string]: string })=>void
+    }
 }
 
 export type ResumeProp = {

@@ -14,6 +14,7 @@ import Education from "../Education/Education.tsx";
 import Experience from "../Experience/Experience.tsx";
 import Project from "../Project/Project.tsx";
 import Skill from "../Skill/Skill.tsx";
+import Recognition from "../Recognition/Recognition.tsx";
 
 
 const Section:(props:SectionProps) => JSX.Element = ({section, data, editMode, openEditMode, updateSection}) => {
@@ -25,8 +26,9 @@ const Section:(props:SectionProps) => JSX.Element = ({section, data, editMode, o
         contact.map(k => ({[k]:contactData[k as keyof ContactProps]})) as {label:keyof ContactProps, value:ContactProps[keyof ContactProps]}[]
         : section === 'education' ? data as EducationProp[] :
             section === 'experience' ? data as ExperienceProp[] :
-                section === 'projects' ? data as ProjectProp[]
-                    : Object.keys(skillData).map(k => ({[k]:skillData[k as keyof SkillsProps]})) as {label:keyof SkillsProps, value:SkillsProps[keyof SkillsProps]}[]
+                section === 'projects' ? data as ProjectProp[] :
+                    section === 'skills' ? Object.keys(skillData).map(k => ({[k]:skillData[k as keyof SkillsProps]})) as {label:keyof SkillsProps, value:SkillsProps[keyof SkillsProps]}[] :
+                        data as {name:string, date:string}[]
 
 
     const [edits, setEdits] = useState<{ editorMode: boolean }[]>(sectionContent.map(() => ({editorMode:false})))
@@ -85,35 +87,71 @@ const Section:(props:SectionProps) => JSX.Element = ({section, data, editMode, o
         type:"textarea",
         addBtn:true,
         onContentAdd: (key: string | number)=> {
-            const index = parseInt((key as string).split('-')[1])
-            const projects = sectionContent as ProjectProp[]
-            const duplicate: ProjectProp = { ...projects[index] };
-            (Object.keys(duplicate) as (keyof ProjectProp)[]).forEach(k => duplicate[k] = k);
-            const updated = [
-                ...projects.slice(0, index+1),
-                duplicate,
-                ...projects.slice(index+1)
-            ]
-            setEdits(prev => [
-                ...prev.slice(0, index),
-                { editorMode: false},
-                { editorMode: true },
-                ...prev.slice(index+1),
-            ]);
-            updateSection!(section, updated)
+            const index = parseInt((key as string).split("-")[1]);
+            const insertAndUpdate = <T extends object>(list: T[], update: (updated: T[]) => void) => {
+                const duplicate = { ...list[index] };
+                (Object.keys(duplicate) as (keyof T)[]).forEach((k) => duplicate[k] = k as never);
+
+                const modified = [
+                    ...list.slice(0, index + 1),
+                    duplicate,
+                    ...list.slice(index + 1),
+                ];
+
+                update(modified);
+
+                setEdits((prev) => [
+                    ...prev.slice(0, index),
+                    { editorMode: false },
+                    { editorMode: true },
+                    ...prev.slice(index + 1),
+                ]);
+            };
+
+            if (section === "projects") {
+                insertAndUpdate(sectionContent as ProjectProp[],
+                    (modified) => updateSection?.(section, modified)
+                );
+            } else if (section === "recognitions") {
+                insertAndUpdate(
+                    sectionContent as { name: string; date: string }[],
+                    (modified) => updateSection?.(section, modified)
+                );
+            }
 
         },
         closeBtn:true,
         onContentRemove: (key: string | number) => {
-            const index = parseInt((key as string).split('-')[1])
-            const projects = sectionContent as ProjectProp[]
-            const updated = projects.filter((_,i)  => i!== index)
-            setEdits(prev => [
-                ...prev.slice(0, index),
-                ...prev.slice(index+1),
-            ]);
-            updateSection!(section, updated)
+            const index = parseInt((key as string).split('-')[1]);
+
+            const removeAndUpdate = <T extends object>(list: T[], update: (modified: T[]) => void) => {
+                const modified = list.filter((_, i) => i !== index);
+
+                update(modified);
+
+                setEdits(prev => [
+                    ...prev.slice(0, index),
+                    ...prev.slice(index + 1),
+                ]);
+            };
+
+            if (section === "projects") {
+                removeAndUpdate(
+                    sectionContent as ProjectProp[],
+                    (updated) => updateSection?.(section, updated)
+                );
+            } else if (section === "recognitions") {
+                removeAndUpdate(
+                    sectionContent as { name: string; date: string }[],
+                    (updated) => updateSection?.(section, updated)
+                );
+            }
         },
+    }
+
+    const recognitionCommon = {
+        ...additionalCommon,
+        type:"input"
     }
 
     switch (section) {
@@ -127,6 +165,8 @@ const Section:(props:SectionProps) => JSX.Element = ({section, data, editMode, o
             return <Project projectCommon={common} additionalCommon={additionalCommon} edits={edits} editorClick={editorClick} projects={sectionContent as ProjectProp[]}  />
         case 'skills':
             return <Skill skillCommon={common} edits={edits} editorClick={editorClick} skills={sectionContent as {label:keyof SkillsProps, value:SkillsProps[keyof SkillsProps]}[]} />
+        case 'recognitions':
+            return <Recognition recognitionCommon={common} additionalCommon={recognitionCommon} edits={edits} editorClick={editorClick} recognitions={sectionContent as {name:string, date:string}[]} />
         default:
             return <></>
     }

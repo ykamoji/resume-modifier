@@ -41,7 +41,7 @@ const ResumeEditor:(props:ResumeProps) => JSX.Element = props => {
                                 defaultValue={props.children ?? ""} />
                     }
                     { props.addBtn || props.closeBtn ?
-                    <div>
+                    <div className={"mt-1"}>
                         {props.addBtn &&
                             <Button variant={"outline-primary"} className={"rounded-0 btn-sm h-25 add_content"}
                                     type={"button"}

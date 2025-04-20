@@ -1,5 +1,5 @@
 #experience{
-    font-size: 13px!important;
+    font-size: 14px!important;
     cursor: pointer;
 }
 
@@ -8,7 +8,7 @@
 }
 
 #experience .resp, #experience .achiev{
-    font-size: 13px!important;
+    font-size: 14px!important;
 }
 
 @media print{

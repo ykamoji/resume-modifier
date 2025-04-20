@@ -54,7 +54,7 @@ const Resume:() => JSX.Element = () => {
 
     return (
         <>
-            <Row className={"justify-content-center mt-4"}>
+            <Row className={"justify-content-center mt-4 mb-5"}>
                 <Col id={"controls"} lg={{span: 3}} className={"position-fixed start-0 ms-5"} style={{top:"40%"}} >
                     <Controls templates={templates} print={handlePrint} uploadTemplates={uploadTemplates} onTemplateSelection={onTemplateSelection}/>
                 </Col>
