@@ -1,68 +1,40 @@
-import {JSX, useEffect, useRef, useState} from "react";
+import {JSX} from "react";
 import SectionHeading from "../../../UI/SectionHeading/SectionHeading.tsx";
 import ResumeEditor from "../ResumeEditor/ResumeEditor.tsx";
+import {SkillListProps} from "../../../utils.ts";
 import './Skill.css'
-import {SkillsProp} from "../../../utils.ts";
 
-const Skill:(props:SkillsProp) => JSX.Element = (props) => {
-
-    const [skill, setSkill] = useState(({...props, editorMode:false}))
-
-    const skillRef= useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const handleDocumentClick = (e:MouseEvent) => {
-            if(skillRef.current && !skillRef.current.contains(e.target as Node)) {
-                setSkill(prevState => ({...prevState, editorMode: false}))
-            }
-        };
-
-        document.addEventListener('click', handleDocumentClick);
-
-        return () => {
-            document.removeEventListener('click', handleDocumentClick);
-        };
-    }, []);
-
-    const editorClick = () => {
-        setSkill(prevState => ({...prevState, editorMode: !prevState.editorMode}))
-    }
-
-    const commonProps = {
-        type:"input",
-        onContentChange: (update: { [key: string | number]: string })=> {
-            const key = Object.keys(update)[0]
-            setSkill(prevState => ({...prevState, [key]: update[key]}))
-        }
-    }
-
+const Skill:(props:SkillListProps) => JSX.Element = ({skillCommon, skills, edits, editorClick}) => {
     return (
         <>
             <SectionHeading>Technical Skills</SectionHeading>
-            <div id={"skill"} className={"mt-1"} ref={skillRef} onDoubleClick={() => editorClick()}>
-                {!skill.editorMode && <>
-                <span className={"fw-bold"}>Languages: </span> {skill.languages}<br/>
-                <span className={"fw-bold"}>Databases: </span> {skill.databases}<br/>
-                <span className={"fw-bold"}>AWS services: </span> {skill.aws}<br/>
-                <span className={"fw-bold"}>Frameworks: </span> {skill.framework}<br/>
-                <span className={"fw-bold"}>ML: </span> {skill.others}<br/>
-                <span className={"fw-bold"}>Certificates: </span>
-                {skill.certificates.map((certs, index) =>
-                    <span key={index} >
-                        {(index > 0 ? ', ': '' )}
-                        <a href={certs.link} className={"link-dark link-underline-dark link-underline-opacity-25 me-1"}
-                           target={"_blank"}>{certs.name}</a>
-                    </span>
+            <div id={"skill"} className={"mt-1"} >
+                {skills.map((data, index) => {
+                    const label = Object.keys(data)[0]
+                    const value = Object.values(data)[0]
+                    if(label === 'certificates') {
+                        const certificates = (value as { name: string, link: string }[])
+                        return (
+                            <div key={index}>
+                                <span className={"fw-bold"}>Certificates: </span>
+                                {certificates.map(({link, name}, i) =>
+                                    <span key={i}>
+                                        {(i > 0 ? ', ' : '')}
+                                        <a href={link}
+                                           className={"link-dark link-underline-dark link-underline-opacity-25 me-1"}
+                                           target={"_blank"}>{name}</a>
+                                    </span>
+                                )}
+                            </div>
+                        )}
+
+                    return (
+                        <div key={index} onDoubleClick={() => editorClick(index)}>
+                            {!edits[index].editorMode && <><span className={"fw-bold text-capitalize"}>{label}: </span> {value}</>}
+                            {edits[index].editorMode && <ResumeEditor {...skillCommon} id={label}>{value as string}</ResumeEditor>}
+                        </div>
                     )}
-                </>}
-                {skill.editorMode && <>
-                    <ResumeEditor {...commonProps} id={"languages"}>{skill.languages}</ResumeEditor>
-                    <ResumeEditor {...commonProps} id={"databases"}>{skill.databases}</ResumeEditor>
-                    <ResumeEditor {...commonProps} id={"aws"}>{skill.aws}</ResumeEditor>
-                    <ResumeEditor {...commonProps} id={"framework"}>{skill.framework}</ResumeEditor>
-                    <ResumeEditor {...commonProps} id={"others"}>{skill.others}</ResumeEditor>
-                </>
-                }
+                )}
             </div>
         </>
     )

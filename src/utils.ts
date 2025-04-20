@@ -16,7 +16,7 @@ export type ContentProps = {
 export type HeaderProps = {
     edits:{editorMode:boolean}[] ,
     editorClick: (index:number) => void,
-    contacts:{label:keyof ContactProps, value:string}[],
+    contacts:{label:keyof ContactProps, value:ContactProps[keyof ContactProps]}[],
     name:string,
     contactCommon:{type:string, onContentChange: (update:{ [key: string | number]: string })=>void}
 }
@@ -82,13 +82,23 @@ export const avoid_targets = [
     'remove_content'
 ]
 
-export type SkillsProp = {
+export type SkillPropsSimple = {
     languages:string,
     databases:string,
     aws:string,
     framework:string,
     others:string,
+}
+
+export type SkillsProps = SkillPropsSimple & {
     certificates:{name:string, link:string }[]
+}
+
+export type SkillListProps = {
+    edits:{editorMode:boolean}[] ,
+    editorClick: (index:number) => void,
+    skills:{label:keyof SkillsProps, value:SkillsProps[keyof SkillsProps]}[],
+    skillCommon:{type:string, onContentChange: (update:{ [key: string | number]: string })=>void}
 }
 
 
@@ -101,7 +111,7 @@ export type ResumeProp = {
     education:EducationProp[],
     experience:ExperienceProp[],
     projects:ProjectProp[],
-    skills:SkillsProp,
+    skills:SkillsProps,
     recognitions:{name:string, date:string}[]
 }
 

@@ -38,7 +38,7 @@ const Project:(props:ProjectListProps) => JSX.Element = ({projectCommon, additio
                         </Row>
                         <Row>
                             {!edits[index].editorMode && <Container>{description}</Container>}
-                            {edits[index].editorMode  && <ResumeEditor {...additionalCommon} id={"description-"+index}>{description}</ResumeEditor>}
+                            {edits[index].editorMode  && <ResumeEditor {...additionalCommon} rows={4} id={"description-"+index}>{description}</ResumeEditor>}
                         </Row>
                     </div>
                 )}

@@ -8,7 +8,7 @@ const Header = () => {
 
     return(
         <>
-            <Navbar bg="dark" data-bs-theme="dark">
+            <Navbar bg="dark" data-bs-theme="dark" className={"sticky-top"}>
                 <Container>
                     <Navbar.Brand as={NavLink} to='/'>Resume Modifier</Navbar.Brand>
                     <Nav className="me-auto">

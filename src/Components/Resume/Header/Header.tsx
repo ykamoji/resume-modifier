@@ -12,7 +12,7 @@ const Header:(props:HeaderProps) => JSX.Element = ({name, edits, contacts, conta
             <div id={"resume_header"} className={"d-flex gap-2 justify-content-center"}>
                 {contacts.map((data, index) => {
                         const label = Object.keys(data)[0]
-                        const value= Object.values(data)[0]
+                        const value= Object.values(data)[0]!
                         return (
                             <div key={index} onDoubleClick={() => editorClick(index)}>
                                 {!edits[index].editorMode &&

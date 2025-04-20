@@ -1,4 +1,3 @@
-import Skill from "../Skill/Skill.tsx";
 import Recognition from "../Recognition/Recognition.tsx";
 import {JSX, useEffect, useRef, useState} from "react";
 import {avoid_targets, resume_sections, ResumeProp, TemplateProps} from "../../../utils.ts";
@@ -41,7 +40,7 @@ const Template:(props:TemplateProps) => JSX.Element = ({data, name, updateTempla
             <Section section={"education"} openEditMode={openEditMode} editMode={editMode.education} data={data.education} />
             <Section section={"experience"} openEditMode={openEditMode} editMode={editMode.experience} data={data.experience} />
             <Section section={"projects"} updateSection={updateSection} openEditMode={openEditMode} editMode={editMode.projects} data={data.projects} />
-            <Skill {...data.skills} />
+            <Section section={"skills"}  openEditMode={openEditMode} editMode={editMode.skills} data={data.skills} />
             <Recognition recognitions={data.recognitions} />
         </div>
     )
