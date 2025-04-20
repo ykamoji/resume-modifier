@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
-import Button from "../../../UI/Button/Button.tsx";
+import Button from "../Button/Button.tsx";
 import {JSX} from "react";
-import {ControlProps, ResumeStateProps} from "../../../utils.ts";
+import {ControlProps, ResumeStateProps} from "../../utils.ts";
 import {Dropdown, SplitButton} from "react-bootstrap";
 import './Controls.css'
 

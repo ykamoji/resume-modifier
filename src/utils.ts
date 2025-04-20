@@ -1,6 +1,6 @@
 export type ContactProps = {
     name:string,
-    role:string
+    role?:string
     addr:string,
     mobile:string,
     email:string,
@@ -10,10 +10,30 @@ export type ContactProps = {
 }
 
 export type ContentProps = {
-    content:string[],
+    content: string[],
 }
 
-export type HeaderProps = {
+export type CoverLetterProps = {
+    contact: ContactProps,
+    content: string[],
+}
+
+export type CoverLetterContactProps = {
+    edits:{editorMode:boolean}[] ,
+    editorClick: (index:number) => void,
+    contacts: {label: keyof ContactProps, value: ContactProps[keyof ContactProps]}[],
+    contactCommon:{type:string, onContentChange: (update:{ [key: string | number]: string })=>void}
+}
+
+export type LabelProps = {
+    editorMode:boolean,
+    editorClick: (index:number) => void,
+    role:string,
+    name:string,
+    contactCommon:{type:string, onContentChange: (update:{ [key: string | number]: string })=>void}
+}
+
+export type ResumeContactProps = {
     edits:{editorMode:boolean}[] ,
     editorClick: (index:number) => void,
     contacts:{label:keyof ContactProps, value:ContactProps[keyof ContactProps]}[],
@@ -127,22 +147,27 @@ export type ResumeProp = {
 export type ResumeStateProps = {
     name:string,
     selected:boolean,
-    data:ResumeProp
+    data:ResumeProp | CoverLetterProps
 }
 
 export type TemplateProps = {
+    id: "resume" | "coverLetter",
     name:string,
-    data:ResumeProp,
-    updateTemplates: (name: string, section: keyof ResumeProp, data: ResumeProp[keyof ResumeProp]) => void
+    data: ResumeProp | CoverLetterProps
+    updateTemplates: (name: string,
+                      section: keyof ResumeProp | keyof CoverLetterProps,
+                      data: ResumeProp[keyof ResumeProp] | CoverLetterProps[keyof CoverLetterProps]) => void
 }
 
 
 export type SectionProps = {
-    section: keyof ResumeProp,
-    data: ResumeProp[keyof ResumeProp]
+    id:"resume" | "coverLetter",
+    section: keyof ResumeProp | keyof CoverLetterProps,
+    data: ResumeProp[keyof ResumeProp] | CoverLetterProps[keyof CoverLetterProps]
     editMode:boolean,
-    openEditMode:(section:keyof ResumeProp)=>void,
-    updateSection?:(section:keyof ResumeProp, data: ResumeProp[keyof ResumeProp]) => void,
+    openEditMode:(section:keyof ResumeProp | keyof CoverLetterProps)=>void,
+    updateSection?:(section:keyof ResumeProp | keyof CoverLetterProps,
+                    data: ResumeProp[keyof ResumeProp] | CoverLetterProps[keyof CoverLetterProps]) => void,
 }
 
 export type ControlProps = {
@@ -152,10 +177,23 @@ export type ControlProps = {
     uploadTemplates: (files: ResumeStateProps[]) => void
 }
 
+export type LayoutProps = {
+    data: ResumeProp | CoverLetterProps,
+    id: "resume" | "coverLetter",
+
+}
+
+
 export const basic = ['mobile', 'email', 'shortAddr'] as const
 export const links = ['linkedIn', 'website'] as const
-export const contact = [...basic, ...links] as const
+export const resumeContact = [...basic, ...links] as const
+
+export const coverLetterContact = ['addr', 'mobile', 'email', 'name', 'role'] as const
 
 export const resume_sections: (keyof ResumeProp)[] = [
     "contact", "education", "experience", "projects", "skills", "recognitions"
+];
+
+export const coverLetter_sections: (keyof CoverLetterProps)[] = [
+    "contact", "content"
 ];

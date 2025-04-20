@@ -1,65 +1,39 @@
-import {JSX, useEffect, useRef, useState} from "react";
+import {JSX} from "react";
 import './Contact.css'
 import CVEditor from '../CVEditor/CVEditor.tsx'
-import {ContactProps} from "../../../utils.ts";
+import {CoverLetterContactProps} from "../../../utils.ts";
+import Container from "react-bootstrap/Container";
 
-const allowedKeys = ['addr', 'mobile', 'email'] as const
 
-const Contact:(props:ContactProps) => JSX.Element = props =>{
+const Contact:(props:CoverLetterContactProps) => JSX.Element = ({contacts, contactCommon, editorClick, edits}) =>{
 
-    const [contact, setContact] = useState(
-        allowedKeys.map(k => ({editorMode:false, label:k , value:props[k]}))
-    )
 
-    const contentRef= useRef<HTMLDivElement>(null);
+    console.log(contacts)
 
-    useEffect(() => {
-        const handleDocumentClick = (e:MouseEvent) => {
-            if(contentRef.current && e.target && !contentRef.current.contains(e.target as Node)) {
-                contact.forEach((c) => c.editorMode = false)
-                setContact(contact)
-            }
-        };
-
-        document.addEventListener('click', handleDocumentClick);
-
-        return () => {
-            document.removeEventListener('click', handleDocumentClick);
-        };
-    }, []);
-
-    const commonProps = {
-        addBtn:false,
-        closeBtn:false,
-        onContentChange: (update: { [key: string]: string })=> {
-            const label = Object.keys(update)[0]
-            const value = update[label] ?? '';
-            setContact(prev => prev.map(c => c.label === label ? { ...c, value } : c));
-        }
-    }
-
-    const editorClick = (key:string) => {
-        const updates = contact.slice(0)
-        updates.filter(c => c.label === key).forEach(c =>  c.editorMode = !c.editorMode)
-        setContact(updates)
-    }
 
     return (
         <>
-            <div id={"contact"} ref={contentRef}>
-                {
-                    contact.map(({editorMode, label, value}, index) => <div key={index}
-                                                                            onDoubleClick={() => editorClick(label)}>
-                            {!editorMode &&
-                                <div id={label}
-                                     className={"link-dark link-offset-2 link-underline-opacity-0 link-opacity-50-hover mb-1"}>
-                                    {value}</div>}
-                            {editorMode && <CVEditor {...commonProps} id={label}>{value}</CVEditor>}
-                        </div>
-                    )
-                }
-            </div>
+        <div id={"contact"}>
+            {contacts.map((data, index) => {
+                const label = Object.keys(data)[0]
+                const value = Object.values(data)[0]!
+                return (
+                    <div key={index} onDoubleClick={() => editorClick(index)}>
+                        {!edits[index].editorMode && <div id={label}>{value} </div>}
+                        {edits[index].editorMode && <CVEditor {...contactCommon} id={label}>{value}</CVEditor>}
+                    </div>
+                )
+            })}
+        </div>
+            <Container id={"label"}>
+                {/*<div id={"name"}>Yash</div>*/}
+                {/*<div onDoubleClick={()=>editorClick(0)}>*/}
+                {/*    {!editorMode && <div id={"role"}>{role}</div>}*/}
+                {/*    {editorMode && <CVEditor {...contactCommon} id={"role"}>{role}</CVEditor>}*/}
+                {/*</div>*/}
+            </Container>
         </>
+
     )
 };
 

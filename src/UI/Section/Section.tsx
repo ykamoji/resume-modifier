@@ -1,35 +1,40 @@
 import {JSX, useEffect, useState} from "react";
 import {
-    contact,
+    resumeContact,
     ContactProps,
     EducationProp,
     ExperienceProp,
     ProjectProp,
     SectionProps,
     SkillPropsSimple,
-    SkillsProps
-} from "../../../utils.ts";
-import Header from "../Header/Header.tsx";
-import Education from "../Education/Education.tsx";
-import Experience from "../Experience/Experience.tsx";
-import Project from "../Project/Project.tsx";
-import Skill from "../Skill/Skill.tsx";
-import Recognition from "../Recognition/Recognition.tsx";
+    SkillsProps, coverLetterContact,
+} from "../../utils.ts";
+
+import CoverLetterContact from "../../Components/CoverLetter/Contact/Contact.tsx";
+import Content from "../../Components/CoverLetter/Content/Content.tsx";
+
+import ResumeContact from "../../Components/Resume/Contact/Contact.tsx";
+import Education from "../../Components/Resume/Education/Education.tsx";
+import Experience from "../../Components/Resume/Experience/Experience.tsx";
+import Project from "../../Components/Resume/Project/Project.tsx";
+import Skill from "../../Components/Resume/Skill/Skill.tsx";
+import Recognition from "../../Components/Resume/Recognition/Recognition.tsx";
 
 
-const Section:(props:SectionProps) => JSX.Element = ({section, data, editMode, openEditMode, updateSection}) => {
+
+const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMode, openEditMode, updateSection}) => {
 
     const contactData = data as ContactProps
     const skillData = data as SkillsProps
 
-    const sectionContent = section === 'contact' ?
-        contact.map(k => ({[k]:contactData[k as keyof ContactProps]})) as {label:keyof ContactProps, value:ContactProps[keyof ContactProps]}[]
-        : section === 'education' ? data as EducationProp[] :
-            section === 'experience' ? data as ExperienceProp[] :
-                section === 'projects' ? data as ProjectProp[] :
-                    section === 'skills' ? Object.keys(skillData).map(k => ({[k]:skillData[k as keyof SkillsProps]})) as {label:keyof SkillsProps, value:SkillsProps[keyof SkillsProps]}[] :
-                        data as {name:string, date:string}[]
-
+    const sectionContent = id === 'resume' ?
+        (section === 'contact' ? resumeContact.map(k => ({[k]:contactData[k as keyof ContactProps]})) as {label:keyof ContactProps, value:ContactProps[keyof ContactProps]}[] :
+            section === 'education' ? data as EducationProp[] :
+                section === 'experience' ? data as ExperienceProp[] :
+                    section === 'projects' ? data as ProjectProp[] :
+                        section === 'skills' ? Object.keys(skillData).map(k => ({[k]:skillData[k as keyof SkillsProps]})) as {label:keyof SkillsProps, value:SkillsProps[keyof SkillsProps]}[] :
+                            data as {name:string, date:string}[]) :
+        (coverLetterContact.map(k => ({[k]:contactData[k as keyof ContactProps]})) as {label:keyof ContactProps, value:ContactProps[keyof ContactProps]}[]);
 
     const [edits, setEdits] = useState<{ editorMode: boolean }[]>(sectionContent.map(() => ({editorMode:false})))
 
@@ -154,21 +159,50 @@ const Section:(props:SectionProps) => JSX.Element = ({section, data, editMode, o
         type:"input"
     }
 
-    switch (section) {
-        case 'contact':
-            return <Header contactCommon={common} edits={edits} editorClick={editorClick} name={contactData.name} contacts={sectionContent as {label:keyof ContactProps, value:ContactProps[keyof ContactProps]}[]} />
-        case 'education':
-            return <Education educationCommon={common} edits={edits} editorClick={editorClick} education={sectionContent as EducationProp[]} />
-        case 'experience':
-            return <Experience experienceCommon={common} edits={edits} editorClick={editorClick} experience={sectionContent as ExperienceProp[]} />
-        case 'projects':
-            return <Project projectCommon={common} additionalCommon={additionalCommon} edits={edits} editorClick={editorClick} projects={sectionContent as ProjectProp[]}  />
-        case 'skills':
-            return <Skill skillCommon={common} edits={edits} editorClick={editorClick} skills={sectionContent as {label:keyof SkillsProps, value:SkillsProps[keyof SkillsProps]}[]} />
-        case 'recognitions':
-            return <Recognition recognitionCommon={common} additionalCommon={recognitionCommon} edits={edits} editorClick={editorClick} recognitions={sectionContent as {name:string, date:string}[]} />
-        default:
-            return <></>
+
+    switch (id){
+        case "resume": {
+            switch (section) {
+                case 'contact':
+                    return <ResumeContact contactCommon={common} edits={edits} editorClick={editorClick}
+                                    name={contactData.name} contacts={sectionContent as { label: keyof ContactProps, value: ContactProps[keyof ContactProps] }[]}/>
+                case 'education':
+                    return <Education educationCommon={common} edits={edits} editorClick={editorClick}
+                                      education={sectionContent as EducationProp[]}/>
+                case 'experience':
+                    return <Experience experienceCommon={common} edits={edits} editorClick={editorClick}
+                                       experience={sectionContent as ExperienceProp[]}/>
+                case 'projects':
+                    return <Project projectCommon={common} additionalCommon={additionalCommon} edits={edits}
+                                    editorClick={editorClick} projects={sectionContent as ProjectProp[]}/>
+                case 'skills':
+                    return <Skill skillCommon={common} edits={edits} editorClick={editorClick}
+                                  skills={sectionContent as {
+                                      label: keyof SkillsProps,
+                                      value: SkillsProps[keyof SkillsProps]
+                                  }[]}/>
+                case 'recognitions':
+                    return <Recognition recognitionCommon={common} additionalCommon={recognitionCommon} edits={edits}
+                                        editorClick={editorClick}
+                                        recognitions={sectionContent as { name: string, date: string }[]}/>
+                default:
+                    return <></>
+            }
+        }
+        case "coverLetter": {
+            switch (section) {
+                case "contact": {
+                    const coverLetterData  = sectionContent as {label: keyof ContactProps, value: ContactProps[keyof ContactProps]}[] ;
+                    return <CoverLetterContact contactCommon={common} edits={edits} editorClick={editorClick} contacts={coverLetterData}  />
+                }
+                // case "content": {
+                //     const conventData  = sectionContent as string[];
+                //     return <Content content={conventData}/>
+                // }
+                default: return <></>
+            }
+        }
+        default: return <></>
     }
 }
 

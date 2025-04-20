@@ -1,26 +1,22 @@
-#resume_header{
+#resume_contact{
     cursor: pointer;
 }
 
-#resume_header .contact{
+#resume_contact .contact{
     font-size: 13px;
 }
 
 @media print{
-    #resume_header .contact{
+    #resume_contact .contact{
         font-size: 10px;
     }
 
-    #resume_header .gap-2 {
+    #resume_contact .gap-2 {
         gap:0.1rem !important;
     }
 
-    #resume_header .contact{
+    #resume_contact .contact{
         padding-right: 0.4rem !important;
     }
-
-}
-
-#resume_header .contact a{
 
 }

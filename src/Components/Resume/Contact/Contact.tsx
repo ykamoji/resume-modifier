@@ -1,15 +1,15 @@
 import {JSX} from "react";
 import ResumeEditor from "../ResumeEditor/ResumeEditor";
-import {HeaderProps, links} from "../../../utils.ts";
-import './Header.css'
+import {ResumeContactProps, links} from "../../../utils.ts";
+import './Contact.css'
 
 
-const Header:(props:HeaderProps) => JSX.Element = ({name, edits, contacts, contactCommon, editorClick}) => {
+const Contact:(props:ResumeContactProps) => JSX.Element = ({name, edits, contacts, contactCommon, editorClick}) => {
 
     return (
         <>
             <div className={"text-center text-uppercase fs-4 fw-semibold"}>{name}</div>
-            <div id={"resume_header"} className={"d-flex gap-2 justify-content-center"}>
+            <div id={"resume_contact"} className={"d-flex gap-2 justify-content-center"}>
                 {contacts.map((data, index) => {
                         const label = Object.keys(data)[0]
                         const value= Object.values(data)[0]!
@@ -32,4 +32,4 @@ const Header:(props:HeaderProps) => JSX.Element = ({name, edits, contacts, conta
     )
 }
 
-export default Header
+export default Contact

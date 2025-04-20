@@ -14,8 +14,37 @@
 }
 
 
+#label{
+    text-align: right;
+    min-width: 0;
+    cursor: pointer;
+}
+
+#name{
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 48px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+#role{
+    margin-top: calc(10px* 0.9);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: #171717;
+    letter-spacing: .14em;
+}
+
 @media print {
-    #contact{
+    #label{
+        width: 120% !important;
+        margin-right: -140px!important;
+        /*margin-left: 150px!important;*/
+    }
+    #name{
 
     }
 }
