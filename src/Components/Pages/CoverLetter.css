@@ -3,10 +3,29 @@
     margin: 0;
 }
 
+#coverLetter{
+    font-weight: 500;
+    font-size: 13px;
+    padding: 50px!important;
+}
+
+#hline{
+    background-color: #171717;
+    width: 4px;
+    height: 60px;
+    position: relative;
+    top: -60px;
+}
+
+#header{
+    /*font-family: Work Sans, sans-serif, Noto Colr Emoji Glyf;*/
+    display: flex;
+    position: relative;
+    padding-top: 18px ;
+}
+
 @media print {
     html, body {
-        margin: 0;
-        padding: 0;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
         background: white!important;
@@ -15,6 +34,19 @@
     #coverLetter {
         background: white!important;
         box-shadow: none!important;
+        padding: 0!important;
+    }
+
+    #hline{
+        position: absolute;
+        right: 25px;
+        top: -15px;
+    }
+
+    #header{
+        margin-top: 60px!important;
+        margin-left: 70px!important;
+        /*width: 150%!important;*/
     }
 
 

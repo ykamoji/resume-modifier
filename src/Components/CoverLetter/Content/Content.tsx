@@ -69,18 +69,18 @@ const Content:(props:ContentProps) => JSX.Element = props => {
 
     return (
         <>
-            <Container id={"content"} ref={contentRef} className={"ps-lg-5 pe-lg-5 ps-sm-5 pe-sm-5 pb-3"}>
+            <Container id={"content"} ref={contentRef}>
                 <Col className={"mb-3"}>Dear Hiring Manager</Col>
                 {control.map(({editorMode, content}, index) =>
                     <div key={index} onDoubleClick={()=>editorClick(index)}>
-                        {!editorMode && <Col className={"mb-3"}>{content}</Col>}
+                        {!editorMode && <Col className={"mb-3 paragraphs"}>{content}</Col>}
                         {editorMode && <CVEditor {...commonProps} id={index}>{content}</CVEditor> }
                     </div> )
                 }
-                <div className="col mb-1">
+                <Col className="mb-1">
                     Yours truly,<br/>
                     Yash Kamoji
-                </div>
+                </Col>
             </Container>
         </>
     )

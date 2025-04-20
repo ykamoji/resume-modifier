@@ -1,6 +1,17 @@
 #content{
-    font-family: Work Sans, sans-serif, Noto Colr Emoji Glyf;
+    /*font-family: Work Sans, sans-serif, Noto Colr Emoji Glyf;*/
     text-align: justify;
     font-size: 13px;
     cursor: pointer;
+
+}
+
+@media print {
+    #content{
+        margin-left:70px!important;
+    }
+
+    #content .paragraphs{
+        width: 125% !important
+    }
 }

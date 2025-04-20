@@ -58,7 +58,7 @@ const Resume:() => JSX.Element = () => {
                 <Col id={"controls"} lg={{span: 3}} className={"position-fixed start-0 ms-5"} style={{top:"40%"}} >
                     <Controls templates={templates} print={handlePrint} uploadTemplates={uploadTemplates} onTemplateSelection={onTemplateSelection}/>
                 </Col>
-                <Col ref={printRef} id={"resume"} lg={{span: 7, offset:3}} className={"shadow-sm bg-white p-2"}>
+                    <Col ref={printRef} id={"resume"} lg={{span: 7, offset:3}} className={"shadow-sm bg-white"}>
                    <Template {...selectedTemplate} updateTemplates={updateTemplates} />
                 </Col>
             </Row>

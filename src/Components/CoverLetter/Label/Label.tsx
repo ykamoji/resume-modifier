@@ -2,6 +2,7 @@ import {JSX, useEffect, useRef, useState} from "react";
 import './Label.css'
 import CVEditor from '../CVEditor/CVEditor.tsx'
 import {ContactProps} from "../../../utils.ts";
+import Container from "react-bootstrap/Container";
 
 const Label:(props:ContactProps) => JSX.Element = props => {
 
@@ -34,13 +35,13 @@ const Label:(props:ContactProps) => JSX.Element = props => {
 
     return (
         <>
-            <div id={"label"} ref={contentRef} className={"container"}>
+            <Container id={"label"} ref={contentRef}>
                 <div id={"name"}>{props.name}</div>
                 <div onDoubleClick={()=>setEditorMode(prevState => !prevState)}>
                     {!editorMode && <div id={"role"}>{role}</div>}
                     {editorMode && <CVEditor {...commonProps} id={"role"}>{role}</CVEditor>}
                 </div>
-            </div>
+            </Container>
         </>
     )
 };

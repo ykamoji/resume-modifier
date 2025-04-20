@@ -1,5 +1,5 @@
 html {
-  font-family: Work Sans, sans-serif, Noto Colr Emoji Glyf;
+  /*font-family: Work Sans, sans-serif, Noto Colr Emoji Glyf;*/
   line-height: 1.5;
   font-size: 1em;
 
@@ -15,25 +15,3 @@ html {
 body{
   background-color: #f4f4f5 !important;
 }
-
-#paper{
-  font-weight: 500;
-  font-size: 13px;
-  line-height: calc(25px* 0.9);
-}
-
-#hline{
-  background-color: #171717;
-  width: 4px;
-  height: 60px;
-  position: relative;
-  top: -15px;
-}
-
-#header{
-  font-family: Work Sans, sans-serif, Noto Colr Emoji Glyf;
-  display: flex;
-  position: relative;
-  padding-top: 18px ;
-}
-

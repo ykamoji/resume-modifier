@@ -26,11 +26,10 @@ const CoverLetter = () => {
                     onClick={handlePrint}>
                 Print
             </Button>
-            <Row className={"justify-content-center mt-4 "}>
-                <Col ref={printRef} id={"coverLetter"} className={"shadow-sm bg-white pe-5 p-3"}
-                     lg={{span: 6}}>
-                    <div id={"hline"} className={"float-end me-5"}></div>
-                    <Container id={"header"} className={"mb-5 ps-sm-5 pe-sm-5"}>
+            <Row className={"justify-content-center mt-4 mb-5"}>
+                <Col ref={printRef} id={"coverLetter"} className={"shadow-sm bg-white"} lg={{span: 6}}>
+                    <div id={"hline"} className={"float-end me-5 mt-3"}></div>
+                    <Container id={"header"} className={"mb-5"}>
                         <Contact {...data.contact} />
                         <Label {...data.contact} />
                     </Container>
