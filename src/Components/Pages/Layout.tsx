@@ -1,4 +1,4 @@
-import {JSX, useRef, useState} from 'react';
+import {JSX, useRef} from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useReactToPrint } from 'react-to-print';
@@ -8,18 +8,11 @@ import Template from "../../UI/Template/Template";
 import './Resume.css'
 
 
-const Layout:(props:LayoutProps) => JSX.Element = ({data, id}) => {
-
-    const [templates, setTemplates] = useState<TemplateStateProps[]>([{
-        name:'Default',
-        selected:true,
-        data:data
-    }])
+const Layout:(props:LayoutProps) => JSX.Element = ({templates, setTemplates, id}) => {
 
     const onTemplateSelection = (name:string) => {
-        const updates = [...templates]
-        updates.forEach(t=> t.name === name ? t.selected=true : t.selected=false)
-        setTemplates(updates)
+        setTemplates(prevState =>
+            prevState.map(t => t.name === name ? {...t, selected:true} : {...t, selected:false}))
     }
 
     const printRef = useRef<HTMLDivElement>(null);

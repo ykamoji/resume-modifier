@@ -186,10 +186,16 @@ export type ControlProps = {
 }
 
 export type LayoutProps = {
-    data: ResumeProp | CoverLetterProps,
+    templates: TemplateStateProps[],
+    setTemplates: (value: (((prevState: TemplateStateProps[]) => TemplateStateProps[]) | TemplateStateProps[])) => void,
     id: "resume" | "coverLetter",
 
 }
+
+export type ProfileState = {
+    resumeTemplates: TemplateStateProps[];
+    coverLetterTemplates: TemplateStateProps[];
+};
 
 
 export const basic = ['mobile', 'email', 'shortAddr'] as const

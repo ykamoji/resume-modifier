@@ -35,6 +35,8 @@ const Controls:(props:ControlProps) => JSX.Element = props => {
         });
     };
 
+    const selectedFile = props.templates.find(t => t.selected)!
+
     return (
         <>
             <Form.Group className={"input-group-sm"} controlId={"formFileMultiple"}>
@@ -45,7 +47,7 @@ const Controls:(props:ControlProps) => JSX.Element = props => {
                     id={'templateSelection'}
                     variant={'primary'}
                     className={"btn-group-sm mt-3"}
-                    title={props.templates.find(t => t.selected)!.name.replace(".json","")}
+                    title={selectedFile.name.replace(".json","")}
                 >
                     <Dropdown.Item className={'small'} onClick={() => props.onTemplateSelection(props.templates[0].name)}>
                         {props.templates[0].name}
@@ -53,7 +55,8 @@ const Controls:(props:ControlProps) => JSX.Element = props => {
                     <Dropdown.Divider/>
                     {props.templates.slice(1).map(({name}, index) =>
                             <Dropdown.Item key={index} className={'small'}
-                                           onClick={() => props.onTemplateSelection(name)}>
+                                           onClick={() => props.onTemplateSelection(name)}
+                                           active={selectedFile.name === name}>
                                 {name.replace(".json","")}</Dropdown.Item>
                     )}
                 </SplitButton>
