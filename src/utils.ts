@@ -183,6 +183,7 @@ export type ControlProps = {
     templates: TemplateStateProps[],
     onTemplateSelection:  (name:string) => void,
     uploadTemplates: (files: TemplateStateProps[]) => void
+    updateTemplateName: (oldName:string, newName:string) => void
 }
 
 export type LayoutProps = {

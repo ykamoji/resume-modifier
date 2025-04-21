@@ -13,6 +13,7 @@
 
 #controls .dropdown-item.active{
     background-color: var(--bs-primary-bg-subtle);
+    color: black;
 }
 
 #controls .dropdown-item.active:hover{

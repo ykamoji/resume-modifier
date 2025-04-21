@@ -9,6 +9,8 @@ type buttonProp = {
     style?:object,
     className?:string,
     id?:string,
+    hidden?:boolean,
+    disabled?:boolean,
     onClick?: () => void,
 }
 const Button: (props:buttonProp) => JSX.Element = props => <BsButton {...props}>{props.children}</BsButton>;

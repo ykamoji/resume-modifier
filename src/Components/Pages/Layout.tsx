@@ -11,8 +11,10 @@ import './Resume.css'
 const Layout:(props:LayoutProps) => JSX.Element = ({templates, setTemplates, id}) => {
 
     const onTemplateSelection = (name:string) => {
-        setTemplates(prevState =>
-            prevState.map(t => t.name === name ? {...t, selected:true} : {...t, selected:false}))
+        if(templates.find(t => t.selected)!.name !== name){
+            setTemplates(prevState =>
+                prevState.map(t => t.name === name ? {...t, selected:true} : {...t, selected:false}))
+        }
     }
 
     const printRef = useRef<HTMLDivElement>(null);
@@ -43,15 +45,28 @@ const Layout:(props:LayoutProps) => JSX.Element = ({templates, setTemplates, id}
         );
     }
 
+    const updateTemplateName = (oldName:string, newName:string) => {
+        if(newName && newName.length > 0){
+            setTemplates(prevState =>
+                prevState.map(t => t.name === oldName ? {...t, name:newName} : {...t})
+            )
+        }
+    }
+
     const selectedTemplate = templates.find(t => t.selected)!
 
     return (
         <>
             <Row className={"justify-content-center mt-4 mb-5"}>
-                <Col id={"controls"} lg={{span: 3}} className={"position-fixed start-0 ms-5"} style={{top:"40%"}} >
-                    <Controls templates={templates} print={handlePrint} uploadTemplates={uploadTemplates} onTemplateSelection={onTemplateSelection}/>
+                <Col id={"controls"} lg={{span: 4}} className={"position-fixed start-0 ms-5"} style={{top:"40%"}} >
+                    <Controls templates={templates}
+                              print={handlePrint}
+                              uploadTemplates={uploadTemplates}
+                              onTemplateSelection={onTemplateSelection}
+                              updateTemplateName={updateTemplateName}
+                    />
                 </Col>
-                <Col ref={printRef} id={id} lg={{span: 7, offset:3}} className={"shadow-sm bg-white"}>
+                <Col ref={printRef} id={id} lg={{span: 7, offset:4}} className={"shadow-sm bg-white"}>
                     <Template id={id} {...selectedTemplate} updateTemplates={updateTemplates} />
                 </Col>
             </Row>
