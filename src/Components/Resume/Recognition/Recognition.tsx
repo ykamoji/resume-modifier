@@ -1,6 +1,6 @@
 import {JSX} from "react";
 import SectionHeading from "../../../UI/SectionHeading/SectionHeading.tsx";
-import ResumeEditor from "../ResumeEditor/ResumeEditor.tsx";
+import Editor from "../../../UI/Editor/Editor.tsx";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {RecognitionProp} from "../../../utils.ts";
@@ -23,8 +23,8 @@ const Recognition:(props:RecognitionProp) => JSX.Element = ({recognitionCommon, 
                         }
                         {edits[index].editorMode &&
                             <>
-                                <ResumeEditor {...recognitionCommon} classAdditional={'col-6'} id={"name-"+index}>{name}</ResumeEditor>
-                                <ResumeEditor {...additionalCommon} classAdditional={'col-6'} id={"date-"+index}>{date}</ResumeEditor>
+                                <Editor {...recognitionCommon} classAdditional={'col-6'} id={"name-"+index}>{name}</Editor>
+                                <Editor {...additionalCommon} classAdditional={'col-6'} id={"date-"+index}>{date}</Editor>
                             </>
                         }
                     </div>

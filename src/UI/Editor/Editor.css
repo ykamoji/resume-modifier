@@ -1,15 +1,15 @@
-.resume-box input{
-    font-size: 13px;
+.editor-box input{
+    font-size: 14px;
     background-color: whitesmoke;
 }
 
-.resume-box input:focus{
+.editor-box input:focus{
     outline: none;
     box-shadow: none;
 }
 
-.resume-box textarea{
-    font-size: 13px;
+.editor-box textarea{
+    font-size: 14px;
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -18,9 +18,13 @@
 
 }
 
-.resume-box textarea:focus{
+.editor-box textarea:focus{
     outline: none;
     box-shadow: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+}
+
+#coverLetter #contact .editor-box input{
+    width: 600px!important;
 }

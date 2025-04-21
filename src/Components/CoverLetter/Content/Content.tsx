@@ -2,7 +2,7 @@ import {useEffect, useState, useRef, JSX} from "react";
 import './Content.css'
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
-import CVEditor from "../CVEditor/CVEditor.tsx"
+import Editor from '../../../UI/Editor/Editor.tsx'
 import {avoid_targets, ContentProps} from "../../../utils.ts";
 
 const Content:(props:ContentProps) => JSX.Element = props => {
@@ -74,7 +74,7 @@ const Content:(props:ContentProps) => JSX.Element = props => {
                 {control.map(({editorMode, content}, index) =>
                     <div key={index} onDoubleClick={()=>editorClick(index)}>
                         {!editorMode && <Col className={"mb-3 paragraphs"}>{content}</Col>}
-                        {editorMode && <CVEditor {...commonProps} id={index}>{content}</CVEditor> }
+                        {editorMode && <Editor {...commonProps} id={index}>{content}</Editor> }
                     </div> )
                 }
                 <Col className="mb-1">

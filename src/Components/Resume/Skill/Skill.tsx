@@ -1,6 +1,6 @@
 import {JSX} from "react";
 import SectionHeading from "../../../UI/SectionHeading/SectionHeading.tsx";
-import ResumeEditor from "../ResumeEditor/ResumeEditor.tsx";
+import Editor from "../../../UI/Editor/Editor.tsx";
 import {SkillListProps} from "../../../utils.ts";
 import './Skill.css'
 
@@ -31,7 +31,7 @@ const Skill:(props:SkillListProps) => JSX.Element = ({skillCommon, skills, edits
                     return (
                         <div key={index} onDoubleClick={() => editorClick(index)}>
                             {!edits[index].editorMode && <><span className={"fw-bold text-capitalize"}>{label}: </span> {value}</>}
-                            {edits[index].editorMode && <ResumeEditor {...skillCommon} id={label}>{value as string}</ResumeEditor>}
+                            {edits[index].editorMode && <Editor {...skillCommon} id={label}>{value as string}</Editor>}
                         </div>
                     )}
                 )}

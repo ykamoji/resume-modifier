@@ -2,7 +2,7 @@ import {JSX} from "react";
 import SectionHeading from "../../../UI/SectionHeading/SectionHeading.tsx";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ResumeEditor from "../ResumeEditor/ResumeEditor.tsx";
+import Editor from "../../../UI/Editor/Editor.tsx";
 import './Project.css'
 import Container from "react-bootstrap/Container";
 import {ProjectListProps} from "../../../utils.ts";
@@ -26,19 +26,19 @@ const Project:(props:ProjectListProps) => JSX.Element = ({projectCommon, additio
                                 </Col>}
                             {edits[index].editorMode &&
                                 <>
-                                    <ResumeEditor {...projectCommon} id={"link-"+index} >{link}</ResumeEditor>
-                                    <ResumeEditor {...projectCommon} id={"name-"+index} >{name}</ResumeEditor>
-                                    {advisors && <ResumeEditor {...projectCommon} id={"advisors-"+index} >{advisors}</ResumeEditor>}
-                                    <ResumeEditor {...projectCommon} id={"code-"+index} >{code}</ResumeEditor>
+                                    <Editor {...projectCommon} id={"link-"+index} >{link}</Editor>
+                                    <Editor {...projectCommon} id={"name-"+index} >{name}</Editor>
+                                    {advisors && <Editor {...projectCommon} id={"advisors-"+index} >{advisors}</Editor>}
+                                    <Editor {...projectCommon} id={"code-"+index} >{code}</Editor>
                                 </>
                                 }
                             {!edits[index].editorMode && <Col sm={{span:3}} className={"date fw-bold text-end"}>{place+', '+date}</Col>}
-                            {edits[index].editorMode  && <ResumeEditor {...projectCommon} classAdditional={"col-2"} id={"pace-"+index}>{place}</ResumeEditor>}
-                            {edits[index].editorMode  && <ResumeEditor {...projectCommon} classAdditional={"col-2"} id={"date-"+index}>{date}</ResumeEditor>}
+                            {edits[index].editorMode  && <Editor {...projectCommon} classAdditional={"col-2"} id={"pace-"+index}>{place}</Editor>}
+                            {edits[index].editorMode  && <Editor {...projectCommon} classAdditional={"col-2"} id={"date-"+index}>{date}</Editor>}
                         </Row>
                         <Row>
                             {!edits[index].editorMode && <Container>{description}</Container>}
-                            {edits[index].editorMode  && <ResumeEditor {...additionalCommon} rows={4} id={"description-"+index}>{description}</ResumeEditor>}
+                            {edits[index].editorMode  && <Editor {...additionalCommon} rows={4} id={"description-"+index}>{description}</Editor>}
                         </Row>
                     </div>
                 )}

@@ -2,7 +2,7 @@ import {JSX} from "react";
 import SectionHeading from "../../../UI/SectionHeading/SectionHeading.tsx";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ResumeEditor from "../ResumeEditor/ResumeEditor.tsx";
+import Editor from "../../../UI/Editor/Editor.tsx";
 import './Experience.css'
 import {ExperienceListProps} from "../../../utils.ts";
 
@@ -21,18 +21,18 @@ const Experience:(props:ExperienceListProps) => JSX.Element = ({experienceCommon
                             </Row>}
                         {edits[index].editorMode &&
                             <Row className={"justify-content-between"}>
-                                <ResumeEditor {...experienceCommon} classAdditional={"col-3"} id={"company-" + index}>{company}</ResumeEditor>
-                                <ResumeEditor {...experienceCommon} classAdditional={"col-4"} id={"job-" + index}>{job}</ResumeEditor>
-                                <ResumeEditor {...experienceCommon} classAdditional={"col-2"} id={"city-" + index}>{city}</ResumeEditor>
-                                <ResumeEditor {...experienceCommon} classAdditional={"col-3"} id={"date-" + index}>{date}</ResumeEditor>
+                                <Editor {...experienceCommon} classAdditional={"col-3"} id={"company-" + index}>{company}</Editor>
+                                <Editor {...experienceCommon} classAdditional={"col-4"} id={"job-" + index}>{job}</Editor>
+                                <Editor {...experienceCommon} classAdditional={"col-2"} id={"city-" + index}>{city}</Editor>
+                                <Editor {...experienceCommon} classAdditional={"col-3"} id={"date-" + index}>{date}</Editor>
                             </Row>}
                         <Row>
                             {!edits[index].editorMode && <Col sm={{span:3}} className={"date text-start text-decoration-underline"}>{project}</Col>}
-                            {edits[index].editorMode  && <ResumeEditor {...experienceCommon} classAdditional={"col-4"} id={"project-"+index}>{project}</ResumeEditor>}
+                            {edits[index].editorMode  && <Editor {...experienceCommon} classAdditional={"col-4"} id={"project-"+index}>{project}</Editor>}
                         </Row>
                         <div className={"resp"}>
                             {/*<span className={"fw-bold"}>Responsibilities</span>*/}
-                            {edits[index].editorMode && <ResumeEditor {...experienceCommon} type={"textarea"} rows={5} id={"responsibilities-"+index}>{responsibilities}</ResumeEditor>}
+                            {edits[index].editorMode && <Editor {...experienceCommon} type={"textarea"} rows={5} id={"responsibilities-"+index}>{responsibilities}</Editor>}
                             {!edits[index].editorMode && <ul className={"mb-0 ps-3"}>
                                 {responsibilities
                                     .split('. ')
@@ -45,7 +45,7 @@ const Experience:(props:ExperienceListProps) => JSX.Element = ({experienceCommon
                         </div>
                         <div className={"achiev"}>
                             {/*<span className={"fw-bold"}>Achievements</span>*/}
-                            {edits[index].editorMode && <ResumeEditor {...experienceCommon} type={"textarea"} rows={2} id={"achievements-"+index}>{achievements}</ResumeEditor>}
+                            {edits[index].editorMode && <Editor {...experienceCommon} type={"textarea"} rows={2} id={"achievements-"+index}>{achievements}</Editor>}
                             {!edits[index].editorMode && <ul className={"mb-0 ps-3"}>
                             {achievements
                                 .split('. ')

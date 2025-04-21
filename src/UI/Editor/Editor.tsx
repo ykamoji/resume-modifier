@@ -1,7 +1,7 @@
 import {JSX} from "react";
 import Form from "react-bootstrap/Form";
-import Button from "../../../UI/Button/Button.tsx";
-import './ResumeEditor.css'
+import Button from "../Button/Button.tsx";
+import './Editor.css'
 
 type ResumeProps = {
     id:string | number,
@@ -16,11 +16,11 @@ type ResumeProps = {
     onContentRemove?: (index: number | string) => void
 }
 
-const ResumeEditor:(props:ResumeProps) => JSX.Element = props => {
+const Editor:(props:ResumeProps) => JSX.Element = props => {
 
     return (
         <>
-            <div className={"resume-box pb-1 "+ (props.classAdditional ?? "")}>
+            <div className={"editor-box pb-1 "+ (props.classAdditional ?? "")}>
                 <div className={ props.type === 'input' ? "" : "d-flex flex-column gap-1 mb-2"}>
                     {
                         props.type === 'textarea' ?
@@ -59,4 +59,4 @@ const ResumeEditor:(props:ResumeProps) => JSX.Element = props => {
     )
 }
 
-export default ResumeEditor
+export default Editor

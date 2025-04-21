@@ -1,5 +1,5 @@
 import {JSX} from "react";
-import ResumeEditor from "../ResumeEditor/ResumeEditor";
+import Editor from "../../../UI/Editor/Editor.tsx";
 import {ResumeContactProps, links} from "../../../utils.ts";
 import './Contact.css'
 
@@ -22,7 +22,7 @@ const Contact:(props:ResumeContactProps) => JSX.Element = ({name, edits, contact
                                                 {value.replace("https://", "").replace("www.", "")}</a> : value}
                                     </div>}
                                 {edits[index].editorMode &&
-                                    <ResumeEditor {...contactCommon} id={label}>{value}</ResumeEditor>}
+                                    <Editor {...contactCommon} id={label}>{value}</Editor>}
                             </div>
                         )
                     }

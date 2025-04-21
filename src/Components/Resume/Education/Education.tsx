@@ -2,7 +2,7 @@ import {JSX} from "react";
 import SectionHeading from "../../../UI/SectionHeading/SectionHeading.tsx";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ResumeEditor from "../ResumeEditor/ResumeEditor.tsx";
+import Editor from "../../../UI/Editor/Editor.tsx";
 import './Education.css'
 import {EducationListProps} from "../../../utils.ts";
 
@@ -27,16 +27,16 @@ const Education:(props:EducationListProps) => JSX.Element = ({education, editorC
                         </>}
                         {edits[index].editorMode && <>
                             <Row className={"justify-content-between"}>
-                                <ResumeEditor {...educationCommon} classAdditional={"col-4"} id={"name-"+index}>{name}</ResumeEditor>
-                                <ResumeEditor {...educationCommon} classAdditional={"col-4"} id={"city-"+index}>{city}</ResumeEditor>
-                                <ResumeEditor {...educationCommon} classAdditional={"col-2"} id={"date-"+index}>{date}</ResumeEditor>
+                                <Editor {...educationCommon} classAdditional={"col-4"} id={"name-"+index}>{name}</Editor>
+                                <Editor {...educationCommon} classAdditional={"col-4"} id={"city-"+index}>{city}</Editor>
+                                <Editor {...educationCommon} classAdditional={"col-2"} id={"date-"+index}>{date}</Editor>
                             </Row>
                             <Row className={"justify-content-between"}>
-                                <ResumeEditor {...educationCommon} classAdditional={"col-6"} id={"degree-"+index}>{degree}</ResumeEditor>
-                                <ResumeEditor {...educationCommon} classAdditional={"col-2"} id={"gpa-"+index}>{gpa}</ResumeEditor>
+                                <Editor {...educationCommon} classAdditional={"col-6"} id={"degree-"+index}>{degree}</Editor>
+                                <Editor {...educationCommon} classAdditional={"col-2"} id={"gpa-"+index}>{gpa}</Editor>
                             </Row>
                             <u>Relevant Coursework</u>&nbsp;&nbsp;
-                            <ResumeEditor {...educationCommon} classAdditional={"col-12"} id={"courses-"+index}>{courses}</ResumeEditor>
+                            <Editor {...educationCommon} classAdditional={"col-12"} id={"courses-"+index}>{courses}</Editor>
                             </>
                         }
                     </div>
