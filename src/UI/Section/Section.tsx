@@ -108,18 +108,18 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
                     duplicate,
                     ...projectData.slice(index + 1),
                 ];
-                updateSection(section, modified)
+                updateSection!(section, modified)
             }
             else if (section === "recognitions") {
                 const recognitionData = sectionContent as {name:string, date:string}[];
                 const duplicate = { ...recognitionData[index] };
-                (Object.keys(duplicate) as (keyof {name:string, date:string}[])[]).forEach((k) => duplicate[k] = k as never);
+                (Object.keys(duplicate) as (keyof {name:string, date:string})[]).forEach((k) => duplicate[k] = k as never);
                 const modified = [
                     ...recognitionData.slice(0, index + 1),
                     duplicate,
                     ...recognitionData.slice(index + 1),
                 ];
-                updateSection(section, modified)
+                updateSection!(section, modified)
             }
             else if (section === "content") {
                 const contentData = sectionContent as string[]
@@ -128,7 +128,7 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
                     'Add your text...',
                     ...contentData.slice(index+1)
                 ]
-                updateSection(section, modified)
+                updateSection!(section, modified)
             }
 
             setEdits((prev) => [
@@ -145,15 +145,15 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
 
             if (section === "projects") {
                 const modified = (sectionContent as ProjectProp[]).filter((_, i) => i !== index);
-                updateSection(section, modified)
+                updateSection!(section, modified)
             }
             else if (section === "recognitions") {
                 const modified = ( sectionContent as { name: string; date: string }[]).filter((_, i) => i !== index);
-                updateSection(section, modified)
+                updateSection!(section, modified)
             }
             else if (section === "content") {
                 const modified = (sectionContent as string[]).filter((_, i) => i !== index);
-                updateSection(section, modified)
+                updateSection!(section, modified)
             }
 
             setEdits(prev => [
