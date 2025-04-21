@@ -84,6 +84,9 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
                 const key = Object.keys(update)[0] as keyof SkillPropsSimple
                 skillData[key] = update[key]
             }
+            else if(section === 'recognitions'){
+                (sectionContent as {name:string, date:string}[])[index][label as keyof {name:string, date:string}] = update[key]
+            }
             else if(section === 'content'){
                 (sectionContent as string[])[index] = update[key]
             }
