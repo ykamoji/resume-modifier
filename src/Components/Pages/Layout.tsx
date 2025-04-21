@@ -3,14 +3,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useReactToPrint } from 'react-to-print';
 import Controls from "../../UI/Controls/Controls.tsx";
-import {CoverLetterProps, LayoutProps, ResumeProp, ResumeStateProps} from "../../utils.ts";
+import {CoverLetterProps, LayoutProps, ResumeProp, TemplateStateProps} from "../../utils.ts";
 import Template from "../../UI/Template/Template";
 import './Resume.css'
 
 
-const  Layout:(props:LayoutProps) => JSX.Element = ({data, id}) => {
+const Layout:(props:LayoutProps) => JSX.Element = ({data, id}) => {
 
-    const [templates, setTemplates] = useState<ResumeStateProps[]>([{
+    const [templates, setTemplates] = useState<TemplateStateProps[]>([{
         name:'Default',
         selected:true,
         data:data
@@ -29,7 +29,7 @@ const  Layout:(props:LayoutProps) => JSX.Element = ({data, id}) => {
         documentTitle: id
     });
 
-    const uploadTemplates = (files:ResumeStateProps[]) => {
+    const uploadTemplates = (files:TemplateStateProps[]) => {
         setTemplates(prevState => [...prevState, ...files])
     }
 

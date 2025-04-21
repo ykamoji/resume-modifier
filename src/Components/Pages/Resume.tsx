@@ -5,7 +5,7 @@ import './Resume.css'
 
 const Resume:() => JSX.Element = () => {
 
-    return <Layout data={DEFAULT} id={"resume"}></Layout>
+    return <Layout data={DEFAULT} id={"resume"} />
 };
 
 export default Resume;

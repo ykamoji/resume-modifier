@@ -152,7 +152,7 @@ export type ResumeProp = {
     recognitions:{name:string, date:string}[]
 }
 
-export type ResumeStateProps = {
+export type TemplateStateProps = {
     name:string,
     selected:boolean,
     data:ResumeProp | CoverLetterProps
@@ -180,9 +180,9 @@ export type SectionProps = {
 
 export type ControlProps = {
     print:() => void
-    templates: ResumeStateProps[],
+    templates: TemplateStateProps[],
     onTemplateSelection:  (name:string) => void,
-    uploadTemplates: (files: ResumeStateProps[]) => void
+    uploadTemplates: (files: TemplateStateProps[]) => void
 }
 
 export type LayoutProps = {

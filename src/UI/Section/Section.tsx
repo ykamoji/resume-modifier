@@ -24,6 +24,7 @@ import Recognition from "../../Components/Resume/Recognition/Recognition.tsx";
 
 const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMode, openEditMode, updateSection}) => {
 
+
     const contactData = data as ContactProps
     const skillData = data as SkillsProps
 
@@ -100,7 +101,6 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
         addBtn:true,
         onContentAdd: (key: string | number)=> {
             const index = parseInt((key as string).split("-")[1]);
-
 
             if (section === "projects") {
                 const projectData = sectionContent as ProjectProp[];

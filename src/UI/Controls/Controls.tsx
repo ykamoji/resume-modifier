@@ -1,7 +1,7 @@
 import Form from "react-bootstrap/Form";
 import Button from "../Button/Button.tsx";
 import {JSX} from "react";
-import {ControlProps, ResumeStateProps} from "../../utils.ts";
+import {ControlProps, TemplateStateProps} from "../../utils.ts";
 import {Dropdown, SplitButton} from "react-bootstrap";
 import './Controls.css'
 
@@ -13,7 +13,7 @@ const Controls:(props:ControlProps) => JSX.Element = props => {
         if (!files) return;
 
         const fileArray = Array.from(files);
-        const results: ResumeStateProps[] = [];
+        const results: TemplateStateProps[] = [];
 
         fileArray.forEach((file, _) => {
             const reader = new FileReader();
