@@ -66,9 +66,9 @@ const Template:(props:TemplateProps) => JSX.Element = ({id, data, name, updateTe
             <div ref={contentRef}>
                 <div id={"hline"} className={"float-end me-5 mt-3"}></div>
                 <Container id={"header"} className={"mb-5"}>
-                    <Section id={id} section={"contact"} data={coverLetterData.contact} editMode={editMode.contact!} openEditMode={openEditMode} />
+                    <Section id={id} section={"contact"} editMode={editMode.contact!} openEditMode={openEditMode} data={coverLetterData.contact}  />
                 </Container>
-                {/*<Section id={id} section={"content"} data={coverLetterData.content} editMode={editMode.content!} openEditMode={openEditMode} />*/}
+                <Section id={id} section={"content"} updateSection={updateSection} editMode={editMode.content!} openEditMode={openEditMode} data={coverLetterData.content}  />
             </div>
         )
     }

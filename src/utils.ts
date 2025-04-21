@@ -10,7 +10,15 @@ export type ContactProps = {
 }
 
 export type ContentProps = {
-    content: string[],
+    edits:{editorMode:boolean}[] ,
+    editorClick: (index:number) => void,
+    contents: string[],
+    contentCommon:{
+        type:string, addBtn:boolean, closeBtn:boolean,
+        onContentAdd: (key: string | number) => void,
+        onContentRemove: (key: string | number) => void,
+        onContentChange: (update:{ [key: string]: string })=>void
+    }
 }
 
 export type CoverLetterProps = {

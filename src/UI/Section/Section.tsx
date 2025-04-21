@@ -34,7 +34,8 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
                     section === 'projects' ? data as ProjectProp[] :
                         section === 'skills' ? Object.keys(skillData).map(k => ({[k]:skillData[k as keyof SkillsProps]})) as {label:keyof SkillsProps, value:SkillsProps[keyof SkillsProps]}[] :
                             data as {name:string, date:string}[]) :
-        (coverLetterContact.map(k => ({[k]:contactData[k as keyof ContactProps]})) as {label:keyof ContactProps, value:ContactProps[keyof ContactProps]}[]);
+        ( section === 'contact' ? coverLetterContact.map(k => ({[k]:contactData[k as keyof ContactProps]})) as {label:keyof ContactProps, value:ContactProps[keyof ContactProps]}[] :
+                data as string[]);
 
     const [edits, setEdits] = useState<{ editorMode: boolean }[]>(sectionContent.map(() => ({editorMode:false})))
 
@@ -83,6 +84,9 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
                 const key = Object.keys(update)[0] as keyof SkillPropsSimple
                 skillData[key] = update[key]
             }
+            else if(section === 'content'){
+                (sectionContent as string[])[index] = update[key]
+            }
 
         }
     }
@@ -93,64 +97,69 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
         addBtn:true,
         onContentAdd: (key: string | number)=> {
             const index = parseInt((key as string).split("-")[1]);
-            const insertAndUpdate = <T extends object>(list: T[], update: (updated: T[]) => void) => {
-                const duplicate = { ...list[index] };
-                (Object.keys(duplicate) as (keyof T)[]).forEach((k) => duplicate[k] = k as never);
 
-                const modified = [
-                    ...list.slice(0, index + 1),
-                    duplicate,
-                    ...list.slice(index + 1),
-                ];
-
-                update(modified);
-
-                setEdits((prev) => [
-                    ...prev.slice(0, index),
-                    { editorMode: false },
-                    { editorMode: true },
-                    ...prev.slice(index + 1),
-                ]);
-            };
 
             if (section === "projects") {
-                insertAndUpdate(sectionContent as ProjectProp[],
-                    (modified) => updateSection?.(section, modified)
-                );
-            } else if (section === "recognitions") {
-                insertAndUpdate(
-                    sectionContent as { name: string; date: string }[],
-                    (modified) => updateSection?.(section, modified)
-                );
+                const projectData = sectionContent as ProjectProp[];
+                const duplicate = { ...projectData[index] };
+                (Object.keys(duplicate) as (keyof ProjectProp)[]).forEach((k) => duplicate[k] = k as never);
+                const modified = [
+                    ...projectData.slice(0, index + 1),
+                    duplicate,
+                    ...projectData.slice(index + 1),
+                ];
+                updateSection(section, modified)
             }
+            else if (section === "recognitions") {
+                const recognitionData = sectionContent as {name:string, date:string}[];
+                const duplicate = { ...recognitionData[index] };
+                (Object.keys(duplicate) as (keyof {name:string, date:string}[])[]).forEach((k) => duplicate[k] = k as never);
+                const modified = [
+                    ...recognitionData.slice(0, index + 1),
+                    duplicate,
+                    ...recognitionData.slice(index + 1),
+                ];
+                updateSection(section, modified)
+            }
+            else if (section === "content") {
+                const contentData = sectionContent as string[]
+                const modified = [
+                    ...contentData.slice(0, index+1),
+                    'Add your text...',
+                    ...contentData.slice(index+1)
+                ]
+                updateSection(section, modified)
+            }
+
+            setEdits((prev) => [
+                ...prev.slice(0, index),
+                { editorMode: false },
+                { editorMode: true },
+                ...prev.slice(index + 1),
+            ]);
 
         },
         closeBtn:true,
         onContentRemove: (key: string | number) => {
             const index = parseInt((key as string).split('-')[1]);
 
-            const removeAndUpdate = <T extends object>(list: T[], update: (modified: T[]) => void) => {
-                const modified = list.filter((_, i) => i !== index);
-
-                update(modified);
-
-                setEdits(prev => [
-                    ...prev.slice(0, index),
-                    ...prev.slice(index + 1),
-                ]);
-            };
-
             if (section === "projects") {
-                removeAndUpdate(
-                    sectionContent as ProjectProp[],
-                    (updated) => updateSection?.(section, updated)
-                );
-            } else if (section === "recognitions") {
-                removeAndUpdate(
-                    sectionContent as { name: string; date: string }[],
-                    (updated) => updateSection?.(section, updated)
-                );
+                const modified = (sectionContent as ProjectProp[]).filter((_, i) => i !== index);
+                updateSection(section, modified)
             }
+            else if (section === "recognitions") {
+                const modified = ( sectionContent as { name: string; date: string }[]).filter((_, i) => i !== index);
+                updateSection(section, modified)
+            }
+            else if (section === "content") {
+                const modified = (sectionContent as string[]).filter((_, i) => i !== index);
+                updateSection(section, modified)
+            }
+
+            setEdits(prev => [
+                ...prev.slice(0, index),
+                ...prev.slice(index + 1),
+            ]);
         },
     }
 
@@ -195,10 +204,10 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
                     const coverLetterData  = sectionContent as {label: keyof ContactProps, value: ContactProps[keyof ContactProps]}[] ;
                     return <CoverLetterContact contactCommon={common} edits={edits} editorClick={editorClick} contacts={coverLetterData}  />
                 }
-                // case "content": {
-                //     const conventData  = sectionContent as string[];
-                //     return <Content content={conventData}/>
-                // }
+                case "content": {
+                    const conventData  = sectionContent as string[];
+                    return <Content contentCommon={additionalCommon} edits={edits} editorClick={editorClick} contents={conventData}/>
+                }
                 default: return <></>
             }
         }
