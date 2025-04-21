@@ -1,11 +1,11 @@
 import {JSX, useRef} from 'react';
-import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useReactToPrint } from 'react-to-print';
 import Controls from "../../UI/Controls/Controls.tsx";
 import {CoverLetterProps, LayoutProps, ResumeProp, TemplateStateProps} from "../../utils.ts";
 import Template from "../../UI/Template/Template";
 import './Resume.css'
+import Container from "react-bootstrap/Container";
 
 
 const Layout:(props:LayoutProps) => JSX.Element = ({templates, setTemplates, id}) => {
@@ -57,8 +57,8 @@ const Layout:(props:LayoutProps) => JSX.Element = ({templates, setTemplates, id}
 
     return (
         <>
-            <Row className={"justify-content-center mt-4 mb-5"}>
-                <Col id={"controls"} lg={{span: 4}} className={"position-fixed start-0 ms-5"} style={{top:"40%"}} >
+            <Container className={"mt-4 mb-5"}>
+                <Col id={"controls"} lg={{span: 3}} className={"start-0 ms-lg-5"}>
                     <Controls templates={templates}
                               print={handlePrint}
                               uploadTemplates={uploadTemplates}
@@ -66,10 +66,10 @@ const Layout:(props:LayoutProps) => JSX.Element = ({templates, setTemplates, id}
                               updateTemplateName={updateTemplateName}
                     />
                 </Col>
-                <Col ref={printRef} id={id} lg={{span: 7, offset:4}} className={"shadow-sm bg-white"}>
+                <Col ref={printRef} id={id} lg={{span: 8, offset:3}} className={"shadow-sm bg-white"}>
                     <Template id={id} {...selectedTemplate} updateTemplates={updateTemplates} />
                 </Col>
-            </Row>
+            </Container>
         </>
     )
 };

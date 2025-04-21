@@ -9,7 +9,7 @@ const Contact:(props:ResumeContactProps) => JSX.Element = ({name, edits, contact
     return (
         <>
             <div className={"text-center text-uppercase fs-4 fw-semibold"}>{name}</div>
-            <div id={"resume_contact"} className={"d-flex gap-2 justify-content-center"}>
+            <div id={"resume_contact"} className={"d-flex flex-wrap gap-2 justify-content-center"}>
                 {contacts.map((data, index) => {
                         const label = Object.keys(data)[0]
                         const value= Object.values(data)[0]!

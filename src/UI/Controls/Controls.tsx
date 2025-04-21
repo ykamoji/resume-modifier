@@ -3,10 +3,9 @@ import Button from "../Button/Button.tsx";
 import {JSX, useEffect, useRef, useState} from "react";
 import {ControlProps, TemplateStateProps} from "../../utils.ts";
 import {Dropdown, OverlayTrigger, SplitButton, Tooltip} from "react-bootstrap";
-import './Controls.css'
-import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import './Controls.css'
 
 
 const Controls:(props:ControlProps) => JSX.Element = props => {
@@ -68,8 +67,9 @@ const Controls:(props:ControlProps) => JSX.Element = props => {
 
     return (
         <>
-            <Form.Group className={"input-group-sm"} controlId={"formFileMultiple"}>
+            <Form.Group className={"input-group-sm col-lg-12 col-8"} controlId={"formFileMultiple"}>
                 <Form.Control type={"file"}
+                              size={"sm"}
                               className={"rounded-0"}
                               onChange={handleFileUpload} multiple/>
             </Form.Group>
@@ -90,9 +90,21 @@ const Controls:(props:ControlProps) => JSX.Element = props => {
                         {name.replace(".json", "")}</Dropdown.Item>
                 )}
             </SplitButton>
-            <Container className={"mt-5"}>
-                <Row>
-                    <Col sm={{span: 6}}>
+            <div className={"mt-lg-5 mt-1 mb-lg-0 mb-4"}>
+                <Row className={"justify-content-lg-end justify-content-start"}>
+                    <Col lg={{span: 1}} xs={{span:12}} className={"mb-lg-0 mb-2"}>
+                        <OverlayTrigger overlay={<Tooltip>Rename</Tooltip>}>
+                            <Form.Check
+                                className={"mt-2"}
+                                type={"switch"}
+                                id={"custom-switch"}
+                                label={""}
+                                checked={rename}
+                                onChange={() => setRename(prevState => !prevState)}
+                            />
+                        </OverlayTrigger>
+                    </Col>
+                    <Col lg={{span: 6}} xs={{span:11}} hidden={!rename} className={"mb-lg-0 mb-2"}>
                         <Form.Control type="text"
                                       className={"rounded-0"}
                                       size={"sm"}
@@ -108,26 +120,14 @@ const Controls:(props:ControlProps) => JSX.Element = props => {
                             Change
                         </Button>
                     </Col>
-                    <Col sm={{span: 1}}>
-                        <OverlayTrigger overlay={<Tooltip>Rename</Tooltip>}>
-                            <Form.Check
-                                className={"mt-2"}
-                                type={"switch"}
-                                id={"custom-switch"}
-                                label={""}
-                                checked={rename}
-                                onChange={() => setRename(prevState => !prevState)}
-                            />
-                        </OverlayTrigger>
-                    </Col>
-                    <Col sm={{span: 2}} className={"pe-1"}>
+                    <Col lg={{span: 2}} xs={{span:2}} className={"pe-1"}>
                         <Button variant={"outline-success"} type={"button"}
-                                className={"rounded-0 btn-sm float-end"}
+                                className={"rounded-0 btn-sm float-lg-end"}
                                 onClick={props.print}>
                             Print
                         </Button>
                     </Col>
-                    <Col sm={{span: 3}} className={"ps-0 ms-0"}>
+                    <Col lg={{span: 3}} xs={{span:4}} className={"ps-1"}>
                         <Button variant={"outline-primary"} type={"button"}
                                 className={"rounded-0 btn-sm"}
                                 onClick={() => handleFileDownload()}>
@@ -135,7 +135,7 @@ const Controls:(props:ControlProps) => JSX.Element = props => {
                         </Button>
                     </Col>
                 </Row>
-            </Container>
+            </div>
         </>
     )
 }

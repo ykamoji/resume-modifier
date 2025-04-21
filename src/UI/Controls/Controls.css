@@ -19,3 +19,10 @@
 #controls .dropdown-item.active:hover{
     background-color: var(--bs-primary);
 }
+
+@media (min-width: 992px) {
+    #controls {
+        position: fixed !important;
+        top:40%;
+    }
+}
