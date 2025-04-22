@@ -11,13 +11,13 @@ const Education:(props:EducationListProps) => JSX.Element = ({education, editorC
     return (
         <>
             <SectionHeading>Education</SectionHeading>
-            <div id={"education"} className={"mb-1"}>
+            <div id={"education"} className={"mb-2"}>
                 {education.map(({name, degree, gpa, city, date, courses}, index) =>
                     <div key={index} className={"edu_section " + (index === 0 ? "mb-2" : "") } onDoubleClick={()=>editorClick(index)}>
                         {!edits[index].editorMode && <>
                             <Row className={"justify-content-between"}>
                                 <Col sm={{span: 9}} className={"name fw-bold text-start"}>{name}, {city}</Col>
-                                <Col sm={{span: 3}} className={"date fw-bold text-end"}>{date}</Col>
+                                <Col sm={{span: 3}} className={"date fw-bold text-end dates"}>{date}</Col>
                             </Row>
                             <Row className={"justify-content-between"}>
                                 <Col sm={{span: 10}} className={"name text-start"}>{degree}</Col>

@@ -8,7 +8,11 @@
         font-size: 11px!important;
     }
 
-    #recognition .name, #recognition .date{
+    #recognition .name{
+        font-size: 11px!important;
+    }
+
+    #recognition .date{
         font-size: 10px!important;
     }
 

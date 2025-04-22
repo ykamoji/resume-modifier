@@ -17,6 +17,10 @@
     }
 
     #experience .resp, #experience .achiev{
+        font-size: 11px!important;
+    }
+
+    #experience .dates{
         font-size: 10px!important;
     }
 }

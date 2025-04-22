@@ -11,13 +11,13 @@ const Experience:(props:ExperienceListProps) => JSX.Element = ({experienceCommon
     return (
         <>
             <SectionHeading>Professional Experience</SectionHeading>
-            <div id={"experience"} className={"mt-1"}>
+            <div id={"experience"} className={"mb-2"}>
                 {experience.map(({company, job, project, city, date, responsibilities, achievements}, index) =>
                     <div key={index} className={"edu_section mb-1"} onDoubleClick={()=>editorClick(index)}>
                         {!edits[index].editorMode &&
                             <Row className={"justify-content-between"}>
                                 <Col sm={{span: 9}} className={"company text-start"}><span className={'fw-bold'}>{company}, {job}</span>, {city}</Col>
-                                <Col sm={{span: 3}} className={"date fw-bold text-end"}>{date}</Col>
+                                <Col sm={{span: 3}} className={"date fw-bold text-end dates"}>{date}</Col>
                             </Row>}
                         {edits[index].editorMode &&
                             <Row className={"justify-content-between"}>
@@ -27,7 +27,7 @@ const Experience:(props:ExperienceListProps) => JSX.Element = ({experienceCommon
                                 <Editor {...experienceCommon} classAdditional={"col-3"} id={"date-" + index}>{date}</Editor>
                             </Row>}
                         <Row>
-                            {!edits[index].editorMode && <Col sm={{span:3}} className={"date text-start text-decoration-underline"}>{project}</Col>}
+                            {!edits[index].editorMode && <Col sm={{span:3}} className={"text-start text-decoration-underline"}>{project}</Col>}
                             {edits[index].editorMode  && <Editor {...experienceCommon} classAdditional={"col-4"} id={"project-"+index}>{project}</Editor>}
                         </Row>
                         <div className={"resp"}>

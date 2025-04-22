@@ -13,7 +13,7 @@ const Project:(props:ProjectListProps) => JSX.Element = ({projectCommon, additio
     return (
         <>
             <SectionHeading>Projects</SectionHeading>
-            <div id={"experience"} className={"mt-1"}>
+            <div id={"experience"} className={"mb-2"}>
                 {projects.map(({name, advisors, code, link, date, place, description}, index) =>
                     <div key={index} className={"proj_section mb-1"} onDoubleClick={()=>editorClick(index)}>
                         <Row className={"justify-content-between"}>
@@ -32,7 +32,7 @@ const Project:(props:ProjectListProps) => JSX.Element = ({projectCommon, additio
                                     <Editor {...projectCommon} id={"code-"+index} >{code}</Editor>
                                 </>
                                 }
-                            {!edits[index].editorMode && <Col sm={{span:3}} className={"date fw-bold text-end"}>{place+', '+date}</Col>}
+                            {!edits[index].editorMode && <Col sm={{span:3}} className={"date fw-bold text-end .dates"}>{place+', '+date}</Col>}
                             {edits[index].editorMode  && <Editor {...projectCommon} classAdditional={"col-2"} id={"pace-"+index}>{place}</Editor>}
                             {edits[index].editorMode  && <Editor {...projectCommon} classAdditional={"col-2"} id={"date-"+index}>{date}</Editor>}
                         </Row>

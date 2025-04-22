@@ -8,7 +8,7 @@
 
 @media print{
     #resume_contact .contact{
-        font-size: 10px;
+        font-size: 11px !important;
     }
 
     #resume_contact .gap-2 {

@@ -12,7 +12,7 @@ const Recognition:(props:RecognitionProp) => JSX.Element = ({recognitionCommon, 
     return (
         <>
             <SectionHeading>Recognition</SectionHeading>
-            <div id={"recognition"} className={"mt-1"} >
+            <div id={"recognition"} >
                 {recognitions.map(({name, date}, index) =>
                     <div key={index} onDoubleClick={() => editorClick(index)}>
                         {!edits[index].editorMode &&

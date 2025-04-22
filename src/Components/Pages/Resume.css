@@ -1,5 +1,9 @@
+
 #resume {
     padding: 10px 50px 10px 50px!important;
+    /*font-family: Arial,Helvetica Neue,Helvetica,sans-serif!important;*/
+    /*font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif!important;*/
+    /*font-family: 'Libre Franklin', 'Segoe UI', 'Arial', sans-serif !important;*/
 }
 
 @page {
@@ -15,7 +19,7 @@
     }
 
     #resume {
-        padding: 2px 35px 2px 35px !important;
+        padding: 10px 50px 2px 50px !important;
         background: white !important;
         box-shadow: none !important;
     }

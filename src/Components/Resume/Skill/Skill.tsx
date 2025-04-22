@@ -8,7 +8,7 @@ const Skill:(props:SkillListProps) => JSX.Element = ({skillCommon, skills, edits
     return (
         <>
             <SectionHeading>Technical Skills</SectionHeading>
-            <div id={"skill"} className={"mt-1"} >
+            <div id={"skill"} className={"mb-2"} >
                 {skills.map((data, index) => {
                     const label = Object.keys(data)[0]
                     const value = Object.values(data)[0]
