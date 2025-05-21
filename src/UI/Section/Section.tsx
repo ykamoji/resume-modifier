@@ -67,30 +67,32 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
             const key = Object.keys(update)[0]
             const [label, idx] = key.split('-')
             const index = parseInt(idx);
-
+            const modified = structuredClone(section === 'contact' ? contactData : section === 'skills' ? skillData : sectionContent)
             if(section === 'contact'){
                 const key = Object.keys(update)[0] as keyof ContactProps
-                contactData[key] = update[key]
+                modified[key] = update[key]
             }
             else if(section === 'education'){
-                (sectionContent as EducationProp[])[index][label as keyof EducationProp] = update[key]
+                (modified as EducationProp[])[index][label as keyof EducationProp] = update[key]
             }
             else if(section === 'experience'){
-                (sectionContent as ExperienceProp[])[index][label as keyof ExperienceProp] = update[key]
+                (modified as ExperienceProp[])[index][label as keyof ExperienceProp] = update[key]
             }
             else if(section === 'projects'){
-                (sectionContent as ProjectProp[])[index][label as keyof ProjectProp] = update[key]
+                (modified as ProjectProp[])[index][label as keyof ProjectProp] = update[key]
             }
             else if(section === 'skills'){
                 const key = Object.keys(update)[0] as keyof SkillPropsSimple
-                skillData[key] = update[key]
+                modified[key] = update[key]
             }
             else if(section === 'recognitions'){
-                (sectionContent as {name:string, date:string}[])[index][label as keyof {name:string, date:string}] = update[key]
+                (modified as {name:string, date:string}[])[index][label as keyof {name:string, date:string}] = update[key]
             }
             else if(section === 'content'){
-                (sectionContent as string[])[index] = update[key]
+                (modified as string[])[index] = update[key]
             }
+
+            updateSection!(section, modified)
 
         }
     }
