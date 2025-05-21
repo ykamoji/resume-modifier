@@ -32,7 +32,7 @@ const Project:(props:ProjectListProps) => JSX.Element = ({projectCommon, additio
                                     <Editor {...projectCommon} id={"code-"+index} >{code}</Editor>
                                 </>
                                 }
-                            {!edits[index].editorMode && <Col sm={{span:3}} className={"date fw-bold text-end .dates"}>{place+', '+date}</Col>}
+                            {!edits[index].editorMode && <Col sm={{span:3}} className={"date fw-bold text-end dates"}>{place+', '+date}</Col>}
                             {edits[index].editorMode  && <Editor {...projectCommon} classAdditional={"col-2"} id={"pace-"+index}>{place}</Editor>}
                             {edits[index].editorMode  && <Editor {...projectCommon} classAdditional={"col-2"} id={"date-"+index}>{date}</Editor>}
                         </Row>

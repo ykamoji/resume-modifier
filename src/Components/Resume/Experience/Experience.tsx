@@ -17,7 +17,7 @@ const Experience:(props:ExperienceListProps) => JSX.Element = ({experienceCommon
                         {!edits[index].editorMode &&
                             <Row className={"justify-content-between"}>
                                 <Col sm={{span: 9}} className={"company text-start"}><span className={'fw-bold'}>{company}, {job}</span>, {city}</Col>
-                                <Col sm={{span: 3}} className={"date fw-bold text-end dates"}>{date}</Col>
+                                <Col sm={{span: 3}} className={"fw-bold text-end dates"}>{date}</Col>
                             </Row>}
                         {edits[index].editorMode &&
                             <Row className={"justify-content-between"}>

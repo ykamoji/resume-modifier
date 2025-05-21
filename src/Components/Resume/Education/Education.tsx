@@ -17,11 +17,11 @@ const Education:(props:EducationListProps) => JSX.Element = ({education, editorC
                         {!edits[index].editorMode && <>
                             <Row className={"justify-content-between"}>
                                 <Col sm={{span: 9}} className={"name fw-bold text-start"}>{name}, {city}</Col>
-                                <Col sm={{span: 3}} className={"date fw-bold text-end dates"}>{date}</Col>
+                                <Col sm={{span: 3}} className={"fw-bold text-end dates"}>{date}</Col>
                             </Row>
                             <Row className={"justify-content-between"}>
                                 <Col sm={{span: 10}} className={"name text-start"}>{degree}</Col>
-                                <Col sm={{span: 2}} className={"date text-end"}>GPA: {gpa}</Col>
+                                <Col sm={{span: 2}} className={"text-end"}>GPA: {gpa}</Col>
                             </Row>
                             {courses && <div className={"courses"}><u>Relevant Coursework</u>&nbsp;&nbsp;{courses}</div>}
                         </>}

@@ -19,8 +19,8 @@ const SectionHeading:(props:SectionProp) => JSX.Element = (props) => {
 
     return (
         <>
-            <div className={"border-bottom border-1 border-black"}>
-                <div className={"text-uppercase fw-bolder section_heading"}>{capitalized_text}</div>
+            <div className={"border-bottom border-1 border-black text-uppercase fw-bold section_heading"}>
+               {capitalized_text}
             </div>
         </>
     )

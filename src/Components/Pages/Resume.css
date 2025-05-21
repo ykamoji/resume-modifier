@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400;1,700&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 
 #resume {
     padding: 10px 50px 10px 50px!important;
     /*font-family: Arial,Helvetica Neue,Helvetica,sans-serif!important;*/
     /*font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif!important;*/
     /*font-family: 'Libre Franklin', 'Segoe UI', 'Arial', sans-serif !important;*/
+    font-family: 'Inter', Arial, sans-serif !important;
 }
 
 @page {
