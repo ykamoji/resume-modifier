@@ -1,13 +1,16 @@
 import {JSX, useEffect, useState} from "react";
 import {
     resumeContact,
+    coverLetterContact,
     ContactProps,
     EducationProp,
     ExperienceProp,
     ProjectProp,
     SectionProps,
     SkillPropsSimple,
-    SkillsProps, coverLetterContact,
+    SkillsProps,
+    ResumeProp,
+    CoverLetterProps,
 } from "../../utils.ts";
 
 import CoverLetterContact from "../../Components/CoverLetter/Contact/Contact.tsx";
@@ -70,7 +73,7 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
             const modified = structuredClone(section === 'contact' ? contactData : section === 'skills' ? skillData : sectionContent)
             if(section === 'contact'){
                 const key = Object.keys(update)[0] as keyof ContactProps
-                modified[key] = update[key]
+                (modified as ContactProps)[key] = update[key]
             }
             else if(section === 'education'){
                 (modified as EducationProp[])[index][label as keyof EducationProp] = update[key]
@@ -83,7 +86,7 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
             }
             else if(section === 'skills'){
                 const key = Object.keys(update)[0] as keyof SkillPropsSimple
-                modified[key] = update[key]
+                (modified as SkillsProps)[key] = update[key]
             }
             else if(section === 'recognitions'){
                 (modified as {name:string, date:string}[])[index][label as keyof {name:string, date:string}] = update[key]
@@ -92,7 +95,7 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
                 (modified as string[])[index] = update[key]
             }
 
-            updateSection!(section, modified)
+            updateSection!(section, modified as ResumeProp[keyof ResumeProp] | CoverLetterProps[keyof CoverLetterProps])
 
         }
     }

@@ -33,13 +33,6 @@ export type CoverLetterContactProps = {
     contactCommon:{type:string, onContentChange: (update:{ [key: string | number]: string })=>void}
 }
 
-export type LabelProps = {
-    editorMode:boolean,
-    editorClick: (index:number) => void,
-    role:string,
-    name:string,
-    contactCommon:{type:string, onContentChange: (update:{ [key: string | number]: string })=>void}
-}
 
 export type ResumeContactProps = {
     edits:{editorMode:boolean}[] ,
