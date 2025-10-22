@@ -26,6 +26,11 @@
       "courses": ""
     }
   ],
+  "summary": [
+    {
+      "description": "Data Scientist and Machine Learning Engineer with 6+ years of experience architecting and deploying scalable software systems for global technology leaders. Currently completing an M.S. in Data Science from UMass Amherst (4.0 GPA), specializing in Computer Vision, NLP, and Generative AI. Proven ability to lead complex technical integrations, recently outperforming a CVPR 2024 baseline in 3D reconstruction and previously reducing manual QA workload by 75% through robust automation."
+    }
+  ],
   "experience": [
     {
       "company": "Wipro",
@@ -171,5 +176,15 @@
       "name": "Top project completions in a month",
       "date": "2017"
     }
-  ]
+  ],
+  "basics": {},
+  "volunteer": [],
+  "languages": [],
+  "references": [],
+  "certificates": [],
+  "work": [],
+  "awards": [],
+  "meta": {},
+  "interests": [],
+  "publications": []
 }

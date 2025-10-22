@@ -11,6 +11,7 @@ import {
     SkillsProps,
     ResumeProp,
     CoverLetterProps,
+    SummaryProp,
 } from "../../utils.ts";
 
 import CoverLetterContact from "../../Components/CoverLetter/Contact/Contact.tsx";
@@ -18,6 +19,7 @@ import Content from "../../Components/CoverLetter/Content/Content.tsx";
 
 import ResumeContact from "../../Components/Resume/Contact/Contact.tsx";
 import Education from "../../Components/Resume/Education/Education.tsx";
+import Summary from "../../Components/Resume/Summary/Summary.tsx";
 import Experience from "../../Components/Resume/Experience/Experience.tsx";
 import Project from "../../Components/Resume/Project/Project.tsx";
 import Skill from "../../Components/Resume/Skill/Skill.tsx";
@@ -34,9 +36,10 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
     const sectionContent = id === 'resume' ?
         (section === 'contact' ? resumeContact.map(k => ({[k]:contactData[k as keyof ContactProps]})) as {label:keyof ContactProps, value:ContactProps[keyof ContactProps]}[] :
             section === 'education' ? data as EducationProp[] :
-                section === 'experience' ? data as ExperienceProp[] :
-                    section === 'projects' ? data as ProjectProp[] :
-                        section === 'skills' ? Object.keys(skillData).map(k => ({[k]:skillData[k as keyof SkillsProps]})) as {label:keyof SkillsProps, value:SkillsProps[keyof SkillsProps]}[] :
+                section === 'summary' ? data as SummaryProp[] :
+                    section === 'experience' ? data as ExperienceProp[] :
+                        section === 'projects' ? data as ProjectProp[] :
+                            section === 'skills' ? Object.keys(skillData).map(k => ({[k]:skillData[k as keyof SkillsProps]})) as {label:keyof SkillsProps, value:SkillsProps[keyof SkillsProps]}[] :
                             data as {name:string, date:string}[]) :
         ( section === 'contact' ? coverLetterContact.map(k => ({[k]:contactData[k as keyof ContactProps]})) as {label:keyof ContactProps, value:ContactProps[keyof ContactProps]}[] :
                 data as string[]);
@@ -77,6 +80,9 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
             }
             else if(section === 'education'){
                 (modified as EducationProp[])[index][label as keyof EducationProp] = update[key]
+            }
+            else if(section === 'summary'){
+                (modified as SummaryProp[])[0][label as keyof SummaryProp] = update[key]
             }
             else if(section === 'experience'){
                 (modified as ExperienceProp[])[index][label as keyof ExperienceProp] = update[key]
@@ -186,6 +192,8 @@ const Section:(props:SectionProps) => JSX.Element = ({id, section, data, editMod
                 case 'education':
                     return <Education educationCommon={common} edits={edits} editorClick={editorClick}
                                       education={sectionContent as EducationProp[]}/>
+                case 'summary':
+                    return <Summary summaryCommon={common} edits={edits} editorClick={editorClick} summary={sectionContent as SummaryProp[]} ></Summary>
                 case 'experience':
                     return <Experience experienceCommon={common} edits={edits} editorClick={editorClick}
                                        experience={sectionContent as ExperienceProp[]}/>
