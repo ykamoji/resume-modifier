@@ -135,11 +135,10 @@
     }
   ],
   "skills": {
-    "languages": "Python, Java, C++, HTML, CSS, Javascript, React.js, Node.js, Next.js",
-    "databases": "SQL, MongoDB, Cassandra",
-    "aws": "EC2, S3, Lambda, DynamoDB, Gateway, Cloud Formation",
-    "framework": "Pytorch, Numpy, Pandas, Spring, REST API, Django",
-    "others": "Data Analysis, Neural Networks, Time Series",
+    "languages": "Python, Java, C++",
+    "mL Framework": "Pytorch, HuggingFace Transformers, Computer Vision (OpenCV), Generative Models (GANs, UNet)",
+    "databases": "MongoDB, Cassandra, SQL",
+    "data Engineering & MLOps": "AWS (EC2, S3, Lambda, DynamoDB, CloudFormation), Docker, Apache Spark, CI/CD (Jenkins)",
     "certificates": [
       {
         "name": "AWS SA–Professional",
