@@ -11,7 +11,7 @@ import Section from "../Section/Section.tsx";
 import Container from "react-bootstrap/Container";
 
 
-const Template:(props:TemplateProps) => JSX.Element = ({id, data, name, updateTemplates}) => {
+const Template:(props:TemplateProps) => JSX.Element = ({id, data, name, updateTemplates, toggleOrder}) => {
 
     const updateSection = (section:keyof ResumeProp | keyof CoverLetterProps,
                            data: ResumeProp[keyof ResumeProp] | CoverLetterProps[keyof CoverLetterProps]) => updateTemplates(name, section, data)
@@ -53,8 +53,18 @@ const Template:(props:TemplateProps) => JSX.Element = ({id, data, name, updateTe
                 <Section id={id} section={"contact"} updateSection={updateSection} openEditMode={openEditMode} editMode={editMode.contact!} data={resumeData.contact} />
                 <Section id={id} section={"education"} updateSection={updateSection} openEditMode={openEditMode} editMode={editMode.education!} data={resumeData.education} />
                 <Section id={id} section={"summary"} updateSection={updateSection} openEditMode={openEditMode} editMode={editMode.summary!} data={resumeData.summary} />
-                <Section id={id} section={"experience"} updateSection={updateSection}  openEditMode={openEditMode} editMode={editMode.experience!} data={resumeData.experience} />
-                <Section id={id} section={"projects"} updateSection={updateSection} openEditMode={openEditMode} editMode={editMode.projects!} data={resumeData.projects} />
+                {toggleOrder &&
+                    <>
+                    <Section id={id} section={"experience"} updateSection={updateSection}  openEditMode={openEditMode} editMode={editMode.experience!} data={resumeData.experience} />
+                    <Section id={id} section={"projects"} updateSection={updateSection} openEditMode={openEditMode} editMode={editMode.projects!} data={resumeData.projects} />
+                    </>
+                }
+                {!toggleOrder &&
+                    <>
+                        <Section id={id} section={"projects"} updateSection={updateSection} openEditMode={openEditMode} editMode={editMode.projects!} data={resumeData.projects} />
+                        <Section id={id} section={"experience"} updateSection={updateSection}  openEditMode={openEditMode} editMode={editMode.experience!} data={resumeData.experience} />
+                    </>
+                }
                 <Section id={id} section={"skills"}  updateSection={updateSection}  openEditMode={openEditMode} editMode={editMode.skills!} data={resumeData.skills} />
                 <Section id={id} section={"recognitions"} updateSection={updateSection} openEditMode={openEditMode} editMode={editMode.recognitions!} data={resumeData.recognitions}  />
             </div>

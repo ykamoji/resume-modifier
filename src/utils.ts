@@ -165,6 +165,7 @@ export type TemplateStateProps = {
 
 export type TemplateProps = {
     id: "resume" | "coverLetter",
+    toggleOrder:boolean,
     name:string,
     data: ResumeProp | CoverLetterProps
     updateTemplates: (name: string,
@@ -185,6 +186,9 @@ export type SectionProps = {
 
 export type ControlProps = {
     print:() => void
+    id:"resume" | "coverLetter",
+    toggleOrder: boolean,
+    setToggleOrder:()=>void,
     templates: TemplateStateProps[],
     onTemplateSelection:  (name:string) => void,
     uploadTemplates: (files: TemplateStateProps[]) => void

@@ -90,6 +90,15 @@ const Controls:(props:ControlProps) => JSX.Element = props => {
                         {name.replace(".json", "")}</Dropdown.Item>
                 )}
             </SplitButton>
+                <Form.Check
+                    className={"mt-3"}
+                    style={{fontSize: "14px", userSelect:"none" }}
+                    type={"switch"}
+                    id={"custom-switch"}
+                    label={"Switch order for Experience and Projects"}
+                    checked={!props.toggleOrder}
+                    onChange={() => props.setToggleOrder()}
+                />
             <div className={"mt-lg-5 mt-1 mb-lg-0 mb-4"}>
                 <Row className={"justify-content-lg-end justify-content-start"}>
                     <Col lg={{span: 1}} xs={{span:12}} className={"mb-lg-0 mb-2"}>
