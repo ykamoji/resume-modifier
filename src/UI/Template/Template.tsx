@@ -57,15 +57,16 @@ const Template:(props:TemplateProps) => JSX.Element = ({id, data, name, updateTe
                     <>
                     <Section id={id} section={"experience"} updateSection={updateSection}  openEditMode={openEditMode} editMode={editMode.experience!} data={resumeData.experience} />
                     <Section id={id} section={"projects"} updateSection={updateSection} openEditMode={openEditMode} editMode={editMode.projects!} data={resumeData.projects} />
+                    <Section id={id} section={"skills"}  updateSection={updateSection}  openEditMode={openEditMode} editMode={editMode.skills!} data={resumeData.skills} />
                     </>
                 }
                 {!toggleOrder &&
                     <>
+                        <Section id={id} section={"skills"}  updateSection={updateSection}  openEditMode={openEditMode} editMode={editMode.skills!} data={resumeData.skills} />
                         <Section id={id} section={"projects"} updateSection={updateSection} openEditMode={openEditMode} editMode={editMode.projects!} data={resumeData.projects} />
                         <Section id={id} section={"experience"} updateSection={updateSection}  openEditMode={openEditMode} editMode={editMode.experience!} data={resumeData.experience} />
                     </>
                 }
-                <Section id={id} section={"skills"}  updateSection={updateSection}  openEditMode={openEditMode} editMode={editMode.skills!} data={resumeData.skills} />
                 <Section id={id} section={"recognitions"} updateSection={updateSection} openEditMode={openEditMode} editMode={editMode.recognitions!} data={resumeData.recognitions}  />
             </div>
         )

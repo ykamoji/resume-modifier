@@ -95,7 +95,7 @@ const Controls:(props:ControlProps) => JSX.Element = props => {
                     style={{fontSize: "14px", userSelect:"none" }}
                     type={"switch"}
                     id={"custom-switch"}
-                    label={"Switch order for Experience and Projects"}
+                    label={"Switch order"}
                     checked={!props.toggleOrder}
                     onChange={() => props.setToggleOrder()}
                 />
