@@ -1,0 +1,12 @@
+#summary{
+    font-size: 13px!important;
+    cursor: pointer;
+}
+
+@media print {
+
+    #summary{
+        font-size: 11px!important;
+    }
+
+}

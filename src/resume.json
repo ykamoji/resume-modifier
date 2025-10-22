@@ -1,9 +1,9 @@
 {
   "contact": {
     "name": "Yash Kamoji",
-    "addr": "119 Brittany Manor Dr, Apt H, Amherst, Massachusetts, United States, 01002",
-    "shortAddr": "Amherst, MA",
-    "mobile": "(413) 406-4727",
+    "addr": "Bengaluru, Karnataka, India, 560115",
+    "shortAddr": "Bangalore",
+    "mobile": "+91 9663582296",
     "email": "yashkamoji@yahoo.com",
     "linkedIn": "https://www.linkedin.com/in/yash-kamoji-51b23b118",
     "website": "https://ykamoji.github.io/"
@@ -24,6 +24,11 @@
       "city": "India",
       "date": "Aug 2013 - May 2017",
       "courses": ""
+    }
+  ],
+  "summary": [
+    {
+      "description": "Data Scientist and Machine Learning Engineer with 6+ years of experience architecting and deploying scalable software systems for global technology leaders. Currently completing an M.S. in Data Science from UMass Amherst (4.0 GPA), specializing in Computer Vision, NLP, and Generative AI. Proven ability to lead complex technical integrations, recently outperforming a CVPR 2024 baseline in 3D reconstruction and previously reducing manual QA workload by 75% through robust automation."
     }
   ],
   "experience": [
@@ -130,11 +135,10 @@
     }
   ],
   "skills": {
-    "languages": "Python, Java, C++, HTML, CSS, Javascript, React.js, Node.js, Next.js",
-    "databases": "SQL, MongoDB, Cassandra",
-    "aws": "EC2, S3, Lambda, DynamoDB, Gateway, Cloud Formation",
-    "framework": "Pytorch, Numpy, Pandas, Spring, REST API, Django",
-    "others": "Data Analysis, Neural Networks, Time Series",
+    "languages": "Python, Java, C++",
+    "mL Framework": "Pytorch, HuggingFace Transformers, Computer Vision (OpenCV), Generative Models (GANs, UNet)",
+    "databases": "MongoDB, Cassandra, SQL",
+    "data Engineering & MLOps": "AWS (EC2, S3, Lambda, DynamoDB, CloudFormation), Docker, Apache Spark, CI/CD (Jenkins)",
     "certificates": [
       {
         "name": "AWS SA–Professional",
@@ -171,5 +175,15 @@
       "name": "Top project completions in a month",
       "date": "2017"
     }
-  ]
+  ],
+  "basics": {},
+  "volunteer": [],
+  "languages": [],
+  "references": [],
+  "certificates": [],
+  "work": [],
+  "awards": [],
+  "meta": {},
+  "interests": [],
+  "publications": []
 }

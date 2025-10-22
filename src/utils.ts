@@ -58,6 +58,17 @@ export type EducationListProps = {
     educationCommon:{type:string, onContentChange: (update:{ [key: string | number]: string })=>void}
 }
 
+export type SummaryProp = {
+    description:string
+}
+
+export type SummaryListProp = {
+    edits:{editorMode:boolean}[],
+    summaryCommon:{type:string, onContentChange: (update:{ [key: string | number]: string })=>void},
+    editorClick: (index:number) => void,
+    summary:SummaryProp[]
+}
+
 export type ExperienceProp = {
     company:string,
     job:string,
@@ -139,6 +150,7 @@ export type RecognitionProp = {
 export type ResumeProp = {
     contact:ContactProps,
     education:EducationProp[],
+    summary:SummaryProp[],
     experience:ExperienceProp[],
     projects:ProjectProp[],
     skills:SkillsProps,
@@ -153,6 +165,7 @@ export type TemplateStateProps = {
 
 export type TemplateProps = {
     id: "resume" | "coverLetter",
+    toggleOrder:boolean,
     name:string,
     data: ResumeProp | CoverLetterProps
     updateTemplates: (name: string,
@@ -173,6 +186,9 @@ export type SectionProps = {
 
 export type ControlProps = {
     print:() => void
+    id:"resume" | "coverLetter",
+    toggleOrder: boolean,
+    setToggleOrder:()=>void,
     templates: TemplateStateProps[],
     onTemplateSelection:  (name:string) => void,
     uploadTemplates: (files: TemplateStateProps[]) => void
@@ -199,7 +215,7 @@ export const resumeContact = [...basic, ...links] as const
 export const coverLetterContact = ['addr', 'mobile', 'email', 'name', 'role'] as const
 
 export const resume_sections: (keyof ResumeProp)[] = [
-    "contact", "education", "experience", "projects", "skills", "recognitions"
+    "contact", "education", "summary" ,"experience", "projects", "skills", "recognitions"
 ];
 
 export const coverLetter_sections: (keyof CoverLetterProps)[] = [

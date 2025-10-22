@@ -1,4 +1,4 @@
-import {JSX, useRef} from 'react';
+import {JSX, useRef, useState} from 'react';
 import Col from 'react-bootstrap/Col';
 import { useReactToPrint } from 'react-to-print';
 import Controls from "../../UI/Controls/Controls.tsx";
@@ -55,11 +55,16 @@ const Layout:(props:LayoutProps) => JSX.Element = ({templates, setTemplates, id}
 
     const selectedTemplate = templates.find(t => t.selected)!
 
+    const [toggleOrder, setToggleOrder] = useState(true)
+
     return (
         <>
             <Container className={"mt-4 mb-5"}>
                 <Col id={"controls"} lg={{span: 3}} className={"start-0 ms-lg-5"}>
-                    <Controls templates={templates}
+                    <Controls id={id}
+                              setToggleOrder={()=> setToggleOrder(prevState => !prevState)}
+                              toggleOrder={toggleOrder}
+                              templates={templates}
                               print={handlePrint}
                               uploadTemplates={uploadTemplates}
                               onTemplateSelection={onTemplateSelection}
@@ -67,7 +72,7 @@ const Layout:(props:LayoutProps) => JSX.Element = ({templates, setTemplates, id}
                     />
                 </Col>
                 <Col ref={printRef} id={id} lg={{span: 8, offset:3}} className={"shadow-sm bg-white"}>
-                    <Template id={id} {...selectedTemplate} updateTemplates={updateTemplates} />
+                    <Template id={id} {...selectedTemplate} updateTemplates={updateTemplates} toggleOrder={toggleOrder} />
                 </Col>
             </Container>
         </>
