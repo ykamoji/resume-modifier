@@ -136,7 +136,7 @@
   ],
   "skills": {
     "languages": "Python, Java, C++",
-    "mL Framework": "Pytorch, HuggingFace Transformers, Computer Vision (OpenCV), Generative Models (GANs, UNet)",
+    "mL Frameworks": "Pytorch, HuggingFace Transformers, Computer Vision (OpenCV), Generative Models (GANs, UNet)",
     "data Engineering & MLOps": "AWS (EC2, S3, Lambda, DynamoDB, CloudFormation), Docker, Apache Spark, CI/CD (Jenkins)",
     "databases": "MongoDB, Cassandra, SQL",
     "certificates": [

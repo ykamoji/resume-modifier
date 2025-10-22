@@ -117,7 +117,7 @@ export const avoid_targets = [
 export type SkillPropsSimple = {
     languages:string,
     databases:string,
-    "mL Framework":string,
+    "mL Frameworks":string,
     "data Engineering & MLOps":string,
 }
 

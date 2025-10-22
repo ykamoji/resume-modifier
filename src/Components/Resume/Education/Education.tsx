@@ -23,7 +23,7 @@ const Education:(props:EducationListProps) => JSX.Element = ({education, editorC
                                 <Col sm={{span: 10}} className={"name text-start"}>{degree}</Col>
                                 <Col sm={{span: 2}} className={"text-end"}>GPA: {gpa}</Col>
                             </Row>
-                            {courses && <div className={"courses"}><u>Relevant Coursework</u>&nbsp;&nbsp;{courses}</div>}
+                            {courses && <div className={"courses"}><u>Relevant Coursework</u>&nbsp;:&nbsp;{courses}</div>}
                         </>}
                         {edits[index].editorMode && <>
                             <Row className={"justify-content-between"}>
